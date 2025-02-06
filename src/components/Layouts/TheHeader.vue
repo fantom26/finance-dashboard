@@ -29,6 +29,7 @@ import TheContainer from '@/components/UI/TheContainer.vue'
 <style lang="scss" scoped>
 .header {
   padding-block: 1.6rem;
+  height: var(--header-height);
 
   &__wrapper {
     display: flex;

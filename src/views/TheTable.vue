@@ -96,6 +96,18 @@ onMounted(() => {
 
 <template>
   <the-container>
-    <ag-grid-vue :rowData="consumers" :columnDefs="columnDefs" style="height: 500px"></ag-grid-vue>
+    <div class="table-page">
+      <ag-grid-vue
+        :rowData="consumers"
+        :columnDefs="columnDefs"
+        style="width: 100%; height: 100%"
+      />
+    </div>
   </the-container>
 </template>
+
+<style scoped lang="scss">
+.table-page {
+  height: calc(100vh - var(--header-height));
+}
+</style>

@@ -7,6 +7,6 @@
 <style lang="scss" scoped>
 .container {
   margin-inline: auto;
-  padding-inline: 1.6rem;
+  padding-inline: var(--container-offset);
 }
 </style>
