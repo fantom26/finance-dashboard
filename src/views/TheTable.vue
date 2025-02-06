@@ -107,6 +107,7 @@ onMounted(() => {
         :columnDefs="columnDefs"
         style="width: 100%; height: 100%"
         :defaultColDef="defaultColDef"
+        :pagination="true"
       />
     </div>
   </the-container>
