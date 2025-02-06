@@ -1,15 +1,14 @@
 <script setup>
-import {useStore} from 'vuex'
-import {computed, onMounted} from "vue";
-import types from "@/store/modules/consumers/types.js"
+import { useStore } from 'vuex'
+import { computed, onMounted } from 'vue'
+import types from '@/store/modules/consumers/types.js'
 
 const store = useStore()
 const consumers = computed(() => store.state.consumers[types.CONSUMERS_STATE])
 
 onMounted(() => {
-  store.dispatch(`consumers/${types.LOAD_CONSUMERS_ACTION}`);
-});
-
+  store.dispatch(`consumers/${types.LOAD_CONSUMERS_ACTION}`)
+})
 </script>
 
 <template>

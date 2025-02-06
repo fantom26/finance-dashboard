@@ -1,9 +1,9 @@
 import '@/styles/settings/index.scss'
-import {createApp} from 'vue'
+import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
 import store from './store'
-import router from "./router";
+import router from './router'
 
 const app = createApp(App)
 

@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-import routes from "@/router/routes.js"
+import routes from '@/router/routes.js'
 </script>
 
 <style lang="scss" scoped>

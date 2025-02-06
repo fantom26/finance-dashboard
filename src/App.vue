@@ -1,6 +1,6 @@
 <template>
   <div>
-    <the-header/>
+    <the-header />
     <main>
       <router-view></router-view>
     </main>
@@ -8,6 +8,5 @@
 </template>
 
 <script setup>
-import TheHeader from "@/components/Layouts/TheHeader.vue";
-
+import TheHeader from '@/components/Layouts/TheHeader.vue'
 </script>
