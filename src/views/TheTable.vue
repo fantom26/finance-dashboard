@@ -11,6 +11,11 @@ ModuleRegistry.registerModules([AllCommunityModule])
 const store = useStore()
 const consumers = computed(() => store.state.consumers[types.CONSUMERS_STATE])
 
+const defaultColDef = ref({
+  filter: true,
+  sortable: true,
+})
+
 const columnDefs = ref([
   { headerName: 'Customer ID', valueGetter: (params) => params.data?.customer_id || '' },
   { headerName: 'Full Name', valueGetter: (params) => params.data?.full_name || '' },
@@ -101,6 +106,7 @@ onMounted(() => {
         :rowData="consumers"
         :columnDefs="columnDefs"
         style="width: 100%; height: 100%"
+        :defaultColDef="defaultColDef"
       />
     </div>
   </the-container>
