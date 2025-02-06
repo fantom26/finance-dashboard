@@ -1,0 +1,36 @@
+:root {
+  --container-offset: 1.5rem;
+  --transition: 0.3s;
+  --radius: 0.4rem;
+
+  --backdrop: #0000002b;
+
+  // Font
+  --font-family: josefin sans;
+
+  // Sizes
+  --small-size: 1.6rem;
+  --large-size: 2rem;
+
+  // Weights
+  --normal-weight: 400;
+  --medium-weight: 500;
+  --bold-weight: 700;
+
+  --white-100: #ffffff;
+  --gray-100: #e3e4f1;
+  --gray-300: #9495a5;
+  --purple-100: #d1d2da;
+  --purple-500: #494c6b;
+  --primary-400: #3a7cfd;
+
+  // Line-heights
+  --small-line-height: 115%;
+  --medium-line-height: 140%;
+
+  // Shadows
+  --shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
+
+  // Indents
+  --page-offset: 2rem;
+}
