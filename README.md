@@ -20,6 +20,8 @@ These tasks ensure the core functionality is implemented and data is displayed p
 - [ ] **Make amount columns (editable)**
 - [ ] **Make reactive recalculation of total sum**
 - [ ] **Make total sum of transactions**
+- [ ] **Removing one record**
+- [ ] **Removing multiple records**
 
 ## ✅ **Charts and Data Visualization**
 These tasks focus on integrating charts and data visualization into the project.
@@ -34,11 +36,13 @@ These tasks enhance the table's functionality and improve user interaction with 
 - [ ] **Enable only necessary modules in ag-grid**
 - [ ] **Add table filters**
 - [ ] **Add table sorting**
+- [ ] **Configure table theme**
 
 ## ✅ **Data Formatting and Calculation Enhancements**
 These tasks ensure that data is properly formatted and calculations are accurate.
 - [ ] **Add formatting data using `numeral.js`**
 - [ ] **Add formatting data using `moment.js`**
+- [ ] **Add country flag using `https://github.com/hampusborgos/country-flags`**
 
 ## ✅ **Optimization and Refactoring**
 These tasks aim to optimize performance and ensure clean, maintainable code.
