@@ -12,17 +12,17 @@ const store = useStore()
 const consumers = computed(() => store.state.consumers[types.CONSUMERS_STATE])
 
 const colDefs = ref([
-  { field: 'customer_id' },
-  { field: 'full_name' },
-  { field: 'date_of_birth' },
+  { headerName: 'Id', field: 'customer_id' },
+  { headerName: 'FullName', field: 'full_name' },
+  { headerName: 'Birthday', field: 'date_of_birth' },
   { field: 'email' },
-  { field: 'phone_number' },
+  { headerName: 'Phone Number', field: 'phone_number' },
   { field: 'address' },
   { field: 'city' },
   { field: 'state' },
   { field: 'country' },
-  { field: 'zip_code' },
-  { field: 'employment_status' },
+  { headerName: 'Zip Code', field: 'zip_code' },
+  { headerName: 'Employment Status', field: 'employment_status' },
 ])
 
 onMounted(() => {
