@@ -4,6 +4,7 @@ import { computed, onMounted, ref } from 'vue'
 import types from '@/store/modules/consumers/types.js'
 import { AgGridVue } from 'ag-grid-vue3'
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community'
+import TheContainer from '@/components/UI/TheContainer.vue'
 
 ModuleRegistry.registerModules([AllCommunityModule])
 
@@ -30,8 +31,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
+  <the-container>
     <h1>Consumers</h1>
-    <ag-grid-vue :rowData="consumers" :columnDefs="colDefs" style="height: 500px"> </ag-grid-vue>
-  </div>
+    <ag-grid-vue :rowData="consumers" :columnDefs="colDefs" style="height: 500px"></ag-grid-vue>
+  </the-container>
 </template>
