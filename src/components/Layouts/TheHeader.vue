@@ -2,8 +2,20 @@
   <header class="header">
     <the-container>
       <div class="header__wrapper">
-        <router-link :to="routes.TABLE">Table</router-link>
-        <router-link :to="routes.CHARTS">Charts</router-link>
+        <div class="header__nav">
+          <router-link
+            :to="routes.TABLE"
+            class="header__nav-link"
+            active-class="header__nav-link--active"
+            >Table
+          </router-link>
+          <router-link
+            :to="routes.CHARTS"
+            class="header__nav-link"
+            active-class="header__nav-link--active"
+            >Charts
+          </router-link>
+        </div>
       </div>
     </the-container>
   </header>
@@ -21,8 +33,21 @@ import TheContainer from '@/components/UI/TheContainer.vue'
   &__wrapper {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 1.6rem;
+
+    &-link {
+      &--active {
+        font-weight: bold;
+        text-decoration: underline;
+      }
+    }
   }
 }
 </style>

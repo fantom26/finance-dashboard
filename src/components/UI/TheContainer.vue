@@ -8,6 +8,5 @@
 .container {
   margin-inline: auto;
   padding-inline: 1.6rem;
-  max-width: 120rem;
 }
 </style>

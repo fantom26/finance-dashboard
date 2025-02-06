@@ -32,7 +32,6 @@ onMounted(() => {
 
 <template>
   <the-container>
-    <h1>Consumers</h1>
     <ag-grid-vue :rowData="consumers" :columnDefs="colDefs" style="height: 500px"></ag-grid-vue>
   </the-container>
 </template>
