@@ -6,5 +6,5 @@
   </section>
 </template>
 <script setup>
-import TheContainer from '@/components/UI/TheContainer.vue'
+import TheContainer from '@/components/base/BaseContainer.vue'
 </script>

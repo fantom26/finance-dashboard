@@ -3,7 +3,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import store from './store'
 import router from './router'
-import TheContainer from '@/components/UI/TheContainer.vue'
+import TheContainer from '@/components/base/BaseContainer.vue'
 
 const app = createApp(App)
 

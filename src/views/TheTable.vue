@@ -4,7 +4,7 @@ import { computed, onMounted, ref } from 'vue'
 import types from '@/store/modules/consumers/types.js'
 import { AgGridVue } from 'ag-grid-vue3'
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community'
-import TheContainer from '@/components/UI/TheContainer.vue'
+import TheContainer from '@/components/base/BaseContainer.vue'
 
 ModuleRegistry.registerModules([AllCommunityModule])
 

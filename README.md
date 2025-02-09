@@ -6,7 +6,7 @@ These tasks are essential for the initial setup of the project and infrastructur
 - [X] **Connect dataset to json-server**
 - [ ] **Make service for working with API**
 - [ ] **Configure axios**
-- [ ] **Set project folder structure**
+- [X] **Set project folder structure**
 - [X] **Set eslint and prettier**
 - [X] **Set Vue Router**
 - [X] **Set Vuex**
