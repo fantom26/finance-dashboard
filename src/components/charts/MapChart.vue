@@ -38,13 +38,12 @@ onMounted(() => {
     return acc
   }, {})
 
-  const pointSeries = chart.series.push(am5map.MapPointSeries.new(root, {}))
   const countriesData = am5geodata_worldLow.features.map((country) => ({
     id: country.id,
     name: country.properties.name,
     value: countryCounts[country.id] ?? 0,
   }))
-  pointSeries.data.setAll(countriesData)
+  polygonSeries.data.setAll(countriesData)
 
   polygonSeries.mapPolygons.template.setAll({
     tooltipText: '{name}: {value} Consumers',
