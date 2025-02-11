@@ -20,7 +20,11 @@ const { data, id } = toRefs(props)
 onMounted(() => {
   const root = am5.Root.new(id.value)
 
-  const chart = root.container.children.push(am5percent.PieChart.new(root, {}))
+  const chart = root.container.children.push(
+    am5percent.PieChart.new(root, {
+      layout: root.verticalLayout,
+    }),
+  )
 
   const series = chart.series.push(
     am5percent.PieSeries.new(root, {
@@ -30,6 +34,20 @@ onMounted(() => {
   )
 
   series.data.setAll(data.value)
+  series.labels.template.set('forceHidden', true)
+  series.ticks.template.set('forceHidden', true)
+
+  const legend = chart.children.push(
+    am5.Legend.new(root, {
+      centerX: am5.percent(50),
+      x: am5.percent(50),
+      layout: am5.GridLayout.new(root, {
+        maxColumns: 3,
+        fixedWidthGrid: true,
+      }),
+    }),
+  )
+  legend.data.setAll(series.dataItems)
 
   return () => root.dispose()
 })

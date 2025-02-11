@@ -19,11 +19,19 @@ const dataByTransLocation = computed(
   <section>
     <the-container>
       <h2>Charts page</h2>
-      <template v-if="hasConsumers">
+      <div class="charts-grid" v-if="hasConsumers">
         <pie-chart id="transaction-type" :data="dataByTransTypeDistribution" />
         <pie-chart id="transaction-location" :data="dataByTransLocation" />
-      </template>
+      </div>
       <p v-else>Loading...</p>
     </the-container>
   </section>
 </template>
+
+<style lang="scss" scoped>
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+</style>
