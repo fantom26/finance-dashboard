@@ -9,6 +9,7 @@ export default {
     return {
       [types.CONSUMERS_STATE]: [],
       [types.TRANSACTION_TYPE_DISTRIBUTION_STATE]: [],
+      [types.TRANSACTION_LOCATION_STATE]: [],
     }
   },
   mutations,

@@ -10,4 +10,7 @@ export default {
   [types.TRANSACTION_TYPE_DISTRIBUTION_STATE](state) {
     return state[types.TRANSACTION_TYPE_DISTRIBUTION_STATE]
   },
+  [types.TRANSACTION_LOCATION_STATE](state) {
+    return state[types.TRANSACTION_LOCATION_STATE]
+  },
 }
