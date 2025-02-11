@@ -17,7 +17,7 @@ const props = defineProps({
   },
 })
 
-const { id } = toRefs(props)
+const { data, id } = toRefs(props)
 
 onMounted(() => {
   const root = am5.Root.new(id.value)
@@ -33,8 +33,21 @@ onMounted(() => {
     }),
   )
 
+  const countryCounts = data.value.reduce((acc, consumer) => {
+    acc[consumer.country_code] = acc[consumer.country_code] + 1 || 1
+    return acc
+  }, {})
+
+  const pointSeries = chart.series.push(am5map.MapPointSeries.new(root, {}))
+  const countriesData = am5geodata_worldLow.features.map((country) => ({
+    id: country.id,
+    name: country.properties.name,
+    value: countryCounts[country.id] ?? 0,
+  }))
+  pointSeries.data.setAll(countriesData)
+
   polygonSeries.mapPolygons.template.setAll({
-    tooltipText: '{name}',
+    tooltipText: '{name}: {value} Consumers',
     interactive: true,
   })
 

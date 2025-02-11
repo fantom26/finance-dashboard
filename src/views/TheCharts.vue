@@ -8,6 +8,8 @@ import MapChart from '@/components/charts/MapChart.vue'
 
 const store = useStore()
 const hasConsumers = computed(() => store.getters[`consumers/${types.HAS_CONSUMERS_STATE}`])
+const consumers = computed(() => store.getters[`consumers/${types.CONSUMERS_STATE}`])
+
 const dataByTransTypeDistribution = computed(
   () => store.getters[`consumers/${types.TRANSACTION_TYPE_DISTRIBUTION_STATE}`],
 )
@@ -23,7 +25,7 @@ const dataByTransLocation = computed(
       <div class="charts-grid" v-if="hasConsumers">
         <pie-chart id="transaction-type" :data="dataByTransTypeDistribution" />
         <pie-chart id="transaction-location" :data="dataByTransLocation" />
-        <map-chart id="consumers-by-countries" data="dataByTransLocation" />
+        <map-chart id="consumers-by-countries" :data="consumers" />
       </div>
       <p v-else>Loading...</p>
     </the-container>
