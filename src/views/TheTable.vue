@@ -1,6 +1,6 @@
 <script setup>
 import { useStore } from 'vuex'
-import { computed, onMounted, ref } from 'vue'
+import { computed, ref } from 'vue'
 import types from '@/store/modules/consumers/types.js'
 import { AgGridVue } from 'ag-grid-vue3'
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community'
@@ -38,7 +38,7 @@ const COLUMNS_FIELDS = {
 }
 
 const store = useStore()
-const consumers = computed(() => store.state.consumers[types.CONSUMERS_STATE])
+const consumers = computed(() => store.getters[`consumers/${types.CONSUMERS_STATE}`])
 
 const pinnedBottomRowData = computed(() => {
   const { totalTransactionAmount, totalAccountBalance } = consumers.value.reduce(
@@ -195,10 +195,6 @@ const columnDefs = ref([
     valueGetter: (params) => formatEmptyCell(params.data?.transactions?.transaction_location),
   },
 ])
-
-onMounted(() => {
-  store.dispatch(`consumers/${types.LOAD_CONSUMERS_ACTION}`)
-})
 </script>
 
 <template>

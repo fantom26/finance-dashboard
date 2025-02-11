@@ -1,24 +1,18 @@
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, toRefs } from 'vue'
 import * as am5 from '@amcharts/amcharts5'
 import * as am5percent from '@amcharts/amcharts5/percent'
 import { defineProps } from 'vue'
 
 const CHART_ID = 'pie-chart-div'
 const props = defineProps({
-  valueField: {
-    type: String,
-    required: true,
-  },
-  categoryField: {
-    type: String,
-    required: true,
-  },
   data: {
     type: Array,
     required: true,
   },
 })
+
+const { data } = toRefs(props)
 
 onMounted(() => {
   const root = am5.Root.new(CHART_ID)
@@ -27,12 +21,12 @@ onMounted(() => {
 
   const series = chart.series.push(
     am5percent.PieSeries.new(root, {
-      valueField: props.valueField,
-      categoryField: props.categoryField,
+      valueField: 'value',
+      categoryField: 'category',
     }),
   )
 
-  series.data.setAll(props.data)
+  series.data.setAll(data.value)
 
   return () => root.dispose()
 })

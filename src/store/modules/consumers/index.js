@@ -8,6 +8,7 @@ export default {
   state() {
     return {
       [types.CONSUMERS_STATE]: [],
+      [types.TRANSACTION_TYPE_DISTRIBUTION_STATE]: [],
     }
   },
   mutations,
