@@ -2,6 +2,13 @@
 # yarn lockfile v1
 
 
+"@amcharts/amcharts5-geodata@^5.1.4":
+  version "5.1.4"
+  resolved "https://registry.yarnpkg.com/@amcharts/amcharts5-geodata/-/amcharts5-geodata-5.1.4.tgz#b53538d38775cc2cd21a5397649a734999264dc4"
+  integrity sha512-M3Rhaef675mHZ6gillSlDfu31ZNUgsaoLpYubRfGRKM7mb//vewtvv8q91zljhE1za5h5NnXmHXCQfmbVo5f9w==
+  dependencies:
+    "@types/geojson" "^7946.0.8"
+
 "@amcharts/amcharts5@^5.11.0":
   version "5.11.0"
   resolved "https://registry.yarnpkg.com/@amcharts/amcharts5/-/amcharts5-5.11.0.tgz#29f1728c928993edce6a26f888de45790781226d"
