@@ -2,6 +2,7 @@
 import { onMounted, toRefs } from 'vue'
 import * as am5 from '@amcharts/amcharts5'
 import * as am5map from '@amcharts/amcharts5/map'
+import am5themes_Animated from '@amcharts/amcharts5/themes/Animated'
 import am5geodata_worldLow from '@amcharts/amcharts5-geodata/worldLow'
 
 import { defineProps } from 'vue'
@@ -21,6 +22,9 @@ const { data, id } = toRefs(props)
 
 onMounted(() => {
   const root = am5.Root.new(id.value)
+
+  root.setThemes([am5themes_Animated.new(root)])
+
   const chart = root.container.children.push(
     am5map.MapChart.new(root, {
       projection: am5map.geoNaturalEarth1(),
