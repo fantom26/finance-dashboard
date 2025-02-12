@@ -6,6 +6,7 @@ import types from '@/store/modules/consumers/types.js'
 import { useStore } from 'vuex'
 import MapChart from '@/components/charts/MapChart.vue'
 import XYChart from '@/components/charts/XYChart.vue'
+import DonutChart from '@/components/charts/DonutChart.vue'
 
 const store = useStore()
 const hasConsumers = computed(() => store.getters[`consumers/${types.HAS_CONSUMERS_STATE}`])
@@ -35,6 +36,9 @@ const dataByTransLocation = computed(
         <div class="charts-grid__item">
           <x-y-chart name="Cities" id="amount-by-cities" :data="dataByTransLocation" />
         </div>
+        <div class="charts-grid__item">
+          <donut-chart id="gender-chart" :data="dataByTransLocation" />
+        </div>
       </div>
       <p v-else>Loading...</p>
     </the-container>
@@ -47,7 +51,7 @@ const dataByTransLocation = computed(
   padding-block: 1rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+  gap: 1rem;
 
   &__item {
     border: 0.1rem solid black;
