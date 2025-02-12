@@ -26,7 +26,6 @@ const COLUMNS_FIELDS = {
   CURRENCY: 'account.currency',
   ACCOUNT_OPEN_DATE: 'account.account_open_date',
   ACCOUNT_STATUS: 'account.account_status',
-  BRANCH_ID: 'account.branch_id',
   TRANSACTION_ID: 'transactions.transaction_id',
   TRANSACTION_DATE: 'transactions.transaction_date',
   TRANSACTION_TYPE: 'transactions.transaction_type',
@@ -148,12 +147,6 @@ const columnDefs = ref([
     field: COLUMNS_FIELDS.ACCOUNT_STATUS,
     valueGetter: (params) => formatEmptyCell(params.data?.account?.account_status),
   },
-  {
-    headerName: 'Branch ID',
-    field: COLUMNS_FIELDS.ACCOUNT_ID,
-    valueGetter: (params) => formatEmptyCell(params.data?.account?.branch_id),
-  },
-
   {
     headerName: 'Transaction ID',
     field: COLUMNS_FIELDS.TRANSACTION_ID,

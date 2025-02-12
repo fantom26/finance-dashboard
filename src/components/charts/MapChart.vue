@@ -30,6 +30,8 @@ onMounted(() => {
   const polygonSeries = chart.series.push(
     am5map.MapPolygonSeries.new(root, {
       geoJSON: am5geodata_worldLow,
+      valueField: 'value',
+      calculateAggregates: true,
     }),
   )
 
@@ -43,6 +45,16 @@ onMounted(() => {
     name: country.properties.name,
     value: countryCounts[country.id] ?? 0,
   }))
+  polygonSeries.set('heatRules', [
+    {
+      target: polygonSeries.mapPolygons.template,
+      dataField: 'value',
+      min: am5.color('#f5e0f8'),
+      max: am5.color('#790881'),
+      key: 'fill',
+    },
+  ])
+
   polygonSeries.data.setAll(countriesData)
 
   polygonSeries.mapPolygons.template.setAll({
@@ -51,7 +63,7 @@ onMounted(() => {
   })
 
   polygonSeries.mapPolygons.template.states.create('hover', {
-    fill: am5.color('#A8E5A9'),
+    fill: am5.color('#e86dbf'),
   })
 })
 </script>
