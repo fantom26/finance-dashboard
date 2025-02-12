@@ -20,24 +20,38 @@ const dataByTransLocation = computed(
 </script>
 
 <template>
-  <section>
+  <div>
     <the-container>
-      <h2>Charts page</h2>
       <div class="charts-grid" v-if="hasConsumers">
-        <pie-chart id="transaction-type" :data="dataByTransTypeDistribution" />
-        <pie-chart id="transaction-location" :data="dataByTransLocation" />
-        <map-chart id="consumers-by-countries" :data="consumers" />
-        <x-y-chart name="Cities" id="amount-by-cities" :data="dataByTransLocation" />
+        <div class="charts-grid__item">
+          <pie-chart id="transaction-type" :data="dataByTransTypeDistribution" />
+        </div>
+        <div class="charts-grid__item">
+          <pie-chart id="transaction-location" :data="dataByTransLocation" />
+        </div>
+        <div class="charts-grid__item">
+          <map-chart id="consumers-by-countries" :data="consumers" />
+        </div>
+        <div class="charts-grid__item">
+          <x-y-chart name="Cities" id="amount-by-cities" :data="dataByTransLocation" />
+        </div>
       </div>
       <p v-else>Loading...</p>
     </the-container>
-  </section>
+  </div>
 </template>
 
 <style lang="scss" scoped>
 .charts-grid {
+  height: calc(100vh - var(--header-height));
+  padding-block: 1rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
+
+  &__item {
+    border: 0.1rem solid black;
+    border-radius: 1rem;
+  }
 }
 </style>
