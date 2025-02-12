@@ -5,6 +5,7 @@ import { computed } from 'vue'
 import types from '@/store/modules/consumers/types.js'
 import { useStore } from 'vuex'
 import MapChart from '@/components/charts/MapChart.vue'
+import XYChart from '@/components/charts/XYChart.vue'
 
 const store = useStore()
 const hasConsumers = computed(() => store.getters[`consumers/${types.HAS_CONSUMERS_STATE}`])
@@ -26,6 +27,7 @@ const dataByTransLocation = computed(
         <pie-chart id="transaction-type" :data="dataByTransTypeDistribution" />
         <pie-chart id="transaction-location" :data="dataByTransLocation" />
         <map-chart id="consumers-by-countries" :data="consumers" />
+        <x-y-chart name="Cities" id="amount-by-cities" :data="dataByTransLocation" />
       </div>
       <p v-else>Loading...</p>
     </the-container>
