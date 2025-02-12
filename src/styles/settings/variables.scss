@@ -1,6 +1,7 @@
 :root {
   --container-offset: 1.6rem;
-  --transition: 0.3s;
+  --base-transition: 0.3s;
+  --page-transition: calc(var(--base-transition) * 2);
   --radius: 0.4rem;
 
   --header-height: 5rem;
