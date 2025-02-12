@@ -25,11 +25,11 @@ These tasks ensure the core functionality is implemented and data is displayed p
 
 ## ✅ **Charts and Data Visualization**
 These tasks focus on integrating charts and data visualization into the project.
-- [ ] **Set `amcharts4`**
-- [ ] **Add chart of sums by categories/countries**
-- [ ] **Chart 1: Sum transactions by categories (Pie Chart)**
-- [ ] **Chart 2: Incomes by time (Line Chart)**
-- [ ] **Chart 3: Expenses by countries (Bar Chart)**
+- [X] **Set `amcharts4`**
+- [X] **Chart 1: Consumers by gender (Donut Chart)**
+- [X] **Chart 2: Spends by countries (Map Chart)**
+- [X] **Chart 3: Expenses by cities (Bar Chart)**
+- [X] **Chart 4: Transactions by distribution method (Pie Chart)**
 
 ## ✅ **Table Enhancements and Filters**
 These tasks enhance the table's functionality and improve user interaction with the data.
@@ -52,7 +52,7 @@ These tasks aim to optimize performance and ensure clean, maintainable code.
 
 ## ✅ **UI/UX Enhancements and Final Touches**
 These tasks focus on improving the overall user experience and interface.
-- [ ] **Add animation for page transition**
+- [X] **Add animation for page transition**
 - [ ] **Improve UI/UX of the application**
 - [ ] **Made common components for working with reusable elements (e.g., button, modal, table row)**
 
