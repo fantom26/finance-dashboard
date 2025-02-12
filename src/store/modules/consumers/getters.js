@@ -13,4 +13,7 @@ export default {
   [types.TRANSACTION_LOCATION_STATE](state) {
     return state[types.TRANSACTION_LOCATION_STATE]
   },
+  [types.CONSUMERS_GENDER_STATE](state) {
+    return state[types.CONSUMERS_GENDER_STATE]
+  },
 }

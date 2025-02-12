@@ -15,6 +15,7 @@ const consumers = computed(() => store.getters[`consumers/${types.CONSUMERS_STAT
 const dataByTransTypeDistribution = computed(
   () => store.getters[`consumers/${types.TRANSACTION_TYPE_DISTRIBUTION_STATE}`],
 )
+const dataByGender = computed(() => store.getters[`consumers/${types.CONSUMERS_GENDER_STATE}`])
 const dataByTransLocation = computed(
   () => store.getters[`consumers/${types.TRANSACTION_LOCATION_STATE}`],
 )
@@ -37,7 +38,7 @@ const dataByTransLocation = computed(
           <x-y-chart name="Cities" id="amount-by-cities" :data="dataByTransLocation" />
         </div>
         <div class="charts-grid__item">
-          <donut-chart id="gender-chart" :data="dataByTransLocation" />
+          <donut-chart id="gender-chart" :data="dataByGender" />
         </div>
       </div>
       <p v-else>Loading...</p>

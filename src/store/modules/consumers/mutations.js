@@ -13,6 +13,11 @@ export default {
       'transaction_location',
       'amount',
     )
+    state[types.CONSUMERS_GENDER_STATE] = formatTransactionData(
+      payload,
+      'transaction_location',
+      'amount',
+    )
   },
 }
 
