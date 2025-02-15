@@ -58,11 +58,23 @@ const pinnedBottomRowData = computed(() => {
   ]
 })
 
-const defaultColDef = ref({
+const rowSelection = ref({
+  mode: 'multiRow',
+})
+
+const selectionColumnDef = ref({
+  sortable: true,
+  resizable: false,
+  width: 70,
+  suppressHeaderMenuButton: false,
+  pinned: 'left',
+})
+
+const defaultColDef = {
   filter: true,
   sortable: true,
   valueFormatter: emptyCellFormatter,
-})
+}
 
 const columnDefs = ref([
   {
@@ -222,6 +234,8 @@ const columnDefs = ref([
         :defaultColDef="defaultColDef"
         :pagination="true"
         :pinnedBottomRowData="pinnedBottomRowData"
+        :selectionColumnDef="selectionColumnDef"
+        :rowSelection="rowSelection"
       />
     </div>
   </the-container>
