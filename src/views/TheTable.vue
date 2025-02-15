@@ -5,7 +5,7 @@ import types from '@/store/modules/consumers/types.js'
 import { AgGridVue } from 'ag-grid-vue3'
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community'
 import TheContainer from '@/components/base/BaseContainer.vue'
-import { formatEmptyCell, formatToUSD } from '@/utils/helpers.js'
+import { currencyFormatter, dateFormatter, formatEmptyCell } from '@/utils/helpers.js'
 
 ModuleRegistry.registerModules([AllCommunityModule])
 
@@ -71,52 +71,62 @@ const columnDefs = ref([
         headerName: 'Customer ID',
         field: COLUMNS_FIELDS.CUSTOMER_ID,
         valueGetter: (params) => formatEmptyCell(params.data?.customer_id),
+        cellDataType: 'text',
       },
       {
         headerName: 'Full Name',
         field: COLUMNS_FIELDS.FULL_NAME,
         valueGetter: (params) => formatEmptyCell(params.data?.full_name),
         pinned: 'left',
+        cellDataType: 'text',
       },
       {
         headerName: 'Birthday',
         field: COLUMNS_FIELDS.BIRTHDAY,
-        valueGetter: (params) => formatEmptyCell(params.data?.date_of_birth),
+        cellDataType: 'dateString',
+        valueFormatter: dateFormatter,
       },
       {
         headerName: 'Gender',
         field: COLUMNS_FIELDS.GENDER,
         valueGetter: (params) => formatEmptyCell(params.data?.gender),
+        cellDataType: 'text',
       },
       {
         headerName: 'Email',
         field: COLUMNS_FIELDS.EMAIL,
         valueGetter: (params) => formatEmptyCell(params.data?.email),
+        cellDataType: 'text',
       },
       {
         headerName: 'Phone Number',
         field: COLUMNS_FIELDS.PHONE_NUMBER,
         valueGetter: (params) => formatEmptyCell(params.data?.phone_number),
+        cellDataType: 'text',
       },
       {
         headerName: 'Address',
         field: COLUMNS_FIELDS.ADDRESS,
         valueGetter: (params) => formatEmptyCell(params.data?.address),
+        cellDataType: 'text',
       },
       {
         headerName: 'City',
         field: COLUMNS_FIELDS.CITY,
         valueGetter: (params) => formatEmptyCell(params.data?.city),
+        cellDataType: 'text',
       },
       {
         headerName: 'Country',
         field: COLUMNS_FIELDS.COUNTRY,
         valueGetter: (params) => formatEmptyCell(params.data?.country),
+        cellDataType: 'text',
       },
       {
         headerName: 'Employment Status',
         field: COLUMNS_FIELDS.EMPLOYMENT_STATUS,
         valueGetter: (params) => formatEmptyCell(params.data?.employment_status),
+        cellDataType: 'text',
       },
     ],
   },
@@ -127,35 +137,38 @@ const columnDefs = ref([
         headerName: 'ID',
         field: COLUMNS_FIELDS.ACCOUNT_ID,
         valueGetter: (params) => formatEmptyCell(params.data?.account?.account_id),
+        cellDataType: 'text',
       },
       {
         headerName: 'Type',
         field: COLUMNS_FIELDS.ACCOUNT_TYPE,
         valueGetter: (params) => formatEmptyCell(params.data?.account?.account_type),
+        cellDataType: 'text',
       },
       {
         headerName: 'Balance',
         field: COLUMNS_FIELDS.ACCOUNT_BALANCE,
-        valueGetter: (params) =>
-          params.data?.account?.account_balance
-            ? formatToUSD(params.data?.account?.account_balance)
-            : '',
         pinned: 'right',
+        cellDataType: 'number',
+        valueFormatter: currencyFormatter,
       },
       {
         headerName: 'Currency',
         field: COLUMNS_FIELDS.CURRENCY,
         valueGetter: (params) => formatEmptyCell(params.data?.account?.currency),
+        cellDataType: 'text',
       },
       {
         headerName: 'Open Date',
         field: COLUMNS_FIELDS.ACCOUNT_OPEN_DATE,
-        valueGetter: (params) => formatEmptyCell(params.data?.account?.account_open_date),
+        cellDataType: 'dateString',
+        valueFormatter: dateFormatter,
       },
       {
         headerName: 'Status',
         field: COLUMNS_FIELDS.ACCOUNT_STATUS,
         valueGetter: (params) => formatEmptyCell(params.data?.account?.account_status),
+        cellDataType: 'text',
       },
     ],
   },
@@ -167,42 +180,49 @@ const columnDefs = ref([
         field: COLUMNS_FIELDS.TRANSACTION_ID,
         columnGroupShow: 'open',
         valueGetter: (params) => formatEmptyCell(params.data?.transactions?.transaction_id),
+        cellDataType: 'text',
       },
       {
         headerName: 'Date',
         field: COLUMNS_FIELDS.TRANSACTION_DATE,
-        valueGetter: (params) => formatEmptyCell(params.data?.transactions?.transaction_date),
+        cellDataType: 'dateString',
+        valueFormatter: dateFormatter,
       },
       {
         headerName: 'Type',
         field: COLUMNS_FIELDS.TRANSACTION_TYPE,
         valueGetter: (params) => formatEmptyCell(params.data?.transactions?.transaction_type),
+        cellDataType: 'text',
       },
       {
         headerName: 'Amount',
         field: COLUMNS_FIELDS.TRANSACTION_AMOUNT,
-        valueGetter: (params) => formatEmptyCell(params.data?.transactions?.amount),
+        cellDataType: 'number',
+        valueFormatter: currencyFormatter,
       },
       {
         headerName: 'Currency',
         field: COLUMNS_FIELDS.TRANSACTION_CURRENCY,
         valueGetter: (params) => formatEmptyCell(params.data?.transactions?.currency),
+        cellDataType: 'text',
       },
       {
         headerName: 'Balance After Transaction',
         field: COLUMNS_FIELDS.BALANCE_AFTER_TRANSACTION,
-        valueGetter: (params) =>
-          formatEmptyCell(params.data?.transactions?.balance_after_transaction),
+        cellDataType: 'number',
+        valueFormatter: currencyFormatter,
       },
       {
         headerName: 'Method',
         field: COLUMNS_FIELDS.TRANSACTION_METHOD,
         valueGetter: (params) => formatEmptyCell(params.data?.transactions?.transaction_method),
+        cellDataType: 'text',
       },
       {
         headerName: 'Location',
         field: COLUMNS_FIELDS.TRANSACTION_LOCATION,
         valueGetter: (params) => formatEmptyCell(params.data?.transactions?.transaction_location),
+        cellDataType: 'text',
       },
     ],
   },
