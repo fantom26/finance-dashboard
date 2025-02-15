@@ -65,127 +65,144 @@ const defaultColDef = ref({
 
 const columnDefs = ref([
   {
-    headerName: 'Customer ID',
-    field: COLUMNS_FIELDS.CUSTOMER_ID,
-    valueGetter: (params) => formatEmptyCell(params.data?.customer_id),
+    headerName: 'General',
+    children: [
+      {
+        headerName: 'Customer ID',
+        field: COLUMNS_FIELDS.CUSTOMER_ID,
+        valueGetter: (params) => formatEmptyCell(params.data?.customer_id),
+      },
+      {
+        headerName: 'Full Name',
+        field: COLUMNS_FIELDS.FULL_NAME,
+        valueGetter: (params) => formatEmptyCell(params.data?.full_name),
+      },
+      {
+        headerName: 'Birthday',
+        field: COLUMNS_FIELDS.BIRTHDAY,
+        valueGetter: (params) => formatEmptyCell(params.data?.date_of_birth),
+      },
+      {
+        headerName: 'Gender',
+        field: COLUMNS_FIELDS.GENDER,
+        valueGetter: (params) => formatEmptyCell(params.data?.gender),
+      },
+      {
+        headerName: 'Email',
+        field: COLUMNS_FIELDS.EMAIL,
+        valueGetter: (params) => formatEmptyCell(params.data?.email),
+      },
+      {
+        headerName: 'Phone Number',
+        field: COLUMNS_FIELDS.PHONE_NUMBER,
+        valueGetter: (params) => formatEmptyCell(params.data?.phone_number),
+      },
+      {
+        headerName: 'Address',
+        field: COLUMNS_FIELDS.ADDRESS,
+        valueGetter: (params) => formatEmptyCell(params.data?.address),
+      },
+      {
+        headerName: 'City',
+        field: COLUMNS_FIELDS.CITY,
+        valueGetter: (params) => formatEmptyCell(params.data?.city),
+      },
+      {
+        headerName: 'Country',
+        field: COLUMNS_FIELDS.COUNTRY,
+        valueGetter: (params) => formatEmptyCell(params.data?.country),
+      },
+      {
+        headerName: 'Employment Status',
+        field: COLUMNS_FIELDS.EMPLOYMENT_STATUS,
+        valueGetter: (params) => formatEmptyCell(params.data?.employment_status),
+      },
+    ],
   },
   {
-    headerName: 'Full Name',
-    field: COLUMNS_FIELDS.FULL_NAME,
-    valueGetter: (params) => formatEmptyCell(params.data?.full_name),
+    headerName: 'Account',
+    children: [
+      {
+        headerName: 'ID',
+        field: COLUMNS_FIELDS.ACCOUNT_ID,
+        valueGetter: (params) => formatEmptyCell(params.data?.account?.account_id),
+      },
+      {
+        headerName: 'Type',
+        field: COLUMNS_FIELDS.ACCOUNT_TYPE,
+        valueGetter: (params) => formatEmptyCell(params.data?.account?.account_type),
+      },
+      {
+        headerName: 'Balance',
+        field: COLUMNS_FIELDS.ACCOUNT_BALANCE,
+        valueGetter: (params) =>
+          params.data?.account?.account_balance
+            ? formatToUSD(params.data?.account?.account_balance)
+            : '',
+      },
+      {
+        headerName: 'Currency',
+        field: COLUMNS_FIELDS.CURRENCY,
+        valueGetter: (params) => formatEmptyCell(params.data?.account?.currency),
+      },
+      {
+        headerName: 'Open Date',
+        field: COLUMNS_FIELDS.ACCOUNT_OPEN_DATE,
+        valueGetter: (params) => formatEmptyCell(params.data?.account?.account_open_date),
+      },
+      {
+        headerName: 'Status',
+        field: COLUMNS_FIELDS.ACCOUNT_STATUS,
+        valueGetter: (params) => formatEmptyCell(params.data?.account?.account_status),
+      },
+    ],
   },
   {
-    headerName: 'Birthday',
-    field: COLUMNS_FIELDS.BIRTHDAY,
-    valueGetter: (params) => formatEmptyCell(params.data?.date_of_birth),
-  },
-  {
-    headerName: 'Gender',
-    field: COLUMNS_FIELDS.GENDER,
-    valueGetter: (params) => formatEmptyCell(params.data?.gender),
-  },
-  {
-    headerName: 'Email',
-    field: COLUMNS_FIELDS.EMAIL,
-    valueGetter: (params) => formatEmptyCell(params.data?.email),
-  },
-  {
-    headerName: 'Phone Number',
-    field: COLUMNS_FIELDS.PHONE_NUMBER,
-    valueGetter: (params) => formatEmptyCell(params.data?.phone_number),
-  },
-  {
-    headerName: 'Address',
-    field: COLUMNS_FIELDS.ADDRESS,
-    valueGetter: (params) => formatEmptyCell(params.data?.address),
-  },
-  {
-    headerName: 'City',
-    field: COLUMNS_FIELDS.CITY,
-    valueGetter: (params) => formatEmptyCell(params.data?.city),
-  },
-  {
-    headerName: 'Country',
-    field: COLUMNS_FIELDS.COUNTRY,
-    valueGetter: (params) => formatEmptyCell(params.data?.country),
-  },
-  {
-    headerName: 'Employment Status',
-    field: COLUMNS_FIELDS.EMPLOYMENT_STATUS,
-    valueGetter: (params) => formatEmptyCell(params.data?.employment_status),
-  },
-  {
-    headerName: 'Account ID',
-    field: COLUMNS_FIELDS.ACCOUNT_ID,
-    valueGetter: (params) => formatEmptyCell(params.data?.account?.account_id),
-  },
-  {
-    headerName: 'Account Type',
-    field: COLUMNS_FIELDS.ACCOUNT_TYPE,
-    valueGetter: (params) => formatEmptyCell(params.data?.account?.account_type),
-  },
-  {
-    headerName: 'Account Balance',
-    field: COLUMNS_FIELDS.ACCOUNT_BALANCE,
-    valueGetter: (params) =>
-      params.data?.account?.account_balance
-        ? formatToUSD(params.data?.account?.account_balance)
-        : '',
-  },
-  {
-    headerName: 'Currency',
-    field: COLUMNS_FIELDS.CURRENCY,
-    valueGetter: (params) => formatEmptyCell(params.data?.account?.currency),
-  },
-  {
-    headerName: 'Account Open Date',
-    field: COLUMNS_FIELDS.ACCOUNT_OPEN_DATE,
-    valueGetter: (params) => formatEmptyCell(params.data?.account?.account_open_date),
-  },
-  {
-    headerName: 'Account Status',
-    field: COLUMNS_FIELDS.ACCOUNT_STATUS,
-    valueGetter: (params) => formatEmptyCell(params.data?.account?.account_status),
-  },
-  {
-    headerName: 'Transaction ID',
-    field: COLUMNS_FIELDS.TRANSACTION_ID,
-    valueGetter: (params) => formatEmptyCell(params.data?.transactions?.transaction_id),
-  },
-  {
-    headerName: 'Transaction Date',
-    field: COLUMNS_FIELDS.TRANSACTION_DATE,
-    valueGetter: (params) => formatEmptyCell(params.data?.transactions?.transaction_date),
-  },
-  {
-    headerName: 'Transaction Type',
-    field: COLUMNS_FIELDS.TRANSACTION_TYPE,
-    valueGetter: (params) => formatEmptyCell(params.data?.transactions?.transaction_type),
-  },
-  {
-    headerName: 'Transaction Amount',
-    field: COLUMNS_FIELDS.TRANSACTION_AMOUNT,
-    valueGetter: (params) => formatEmptyCell(params.data?.transactions?.amount),
-  },
-  {
-    headerName: 'Transaction Currency',
-    field: COLUMNS_FIELDS.TRANSACTION_CURRENCY,
-    valueGetter: (params) => formatEmptyCell(params.data?.transactions?.currency),
-  },
-  {
-    headerName: 'Balance After Transaction',
-    field: COLUMNS_FIELDS.BALANCE_AFTER_TRANSACTION,
-    valueGetter: (params) => formatEmptyCell(params.data?.transactions?.balance_after_transaction),
-  },
-  {
-    headerName: 'Transaction Method',
-    field: COLUMNS_FIELDS.TRANSACTION_METHOD,
-    valueGetter: (params) => formatEmptyCell(params.data?.transactions?.transaction_method),
-  },
-  {
-    headerName: 'Transaction Location',
-    field: COLUMNS_FIELDS.TRANSACTION_LOCATION,
-    valueGetter: (params) => formatEmptyCell(params.data?.transactions?.transaction_location),
+    headerName: 'Transaction',
+    children: [
+      {
+        headerName: 'ID',
+        field: COLUMNS_FIELDS.TRANSACTION_ID,
+        columnGroupShow: 'open',
+        valueGetter: (params) => formatEmptyCell(params.data?.transactions?.transaction_id),
+      },
+      {
+        headerName: 'Date',
+        field: COLUMNS_FIELDS.TRANSACTION_DATE,
+        valueGetter: (params) => formatEmptyCell(params.data?.transactions?.transaction_date),
+      },
+      {
+        headerName: 'Type',
+        field: COLUMNS_FIELDS.TRANSACTION_TYPE,
+        valueGetter: (params) => formatEmptyCell(params.data?.transactions?.transaction_type),
+      },
+      {
+        headerName: 'Amount',
+        field: COLUMNS_FIELDS.TRANSACTION_AMOUNT,
+        valueGetter: (params) => formatEmptyCell(params.data?.transactions?.amount),
+      },
+      {
+        headerName: 'Currency',
+        field: COLUMNS_FIELDS.TRANSACTION_CURRENCY,
+        valueGetter: (params) => formatEmptyCell(params.data?.transactions?.currency),
+      },
+      {
+        headerName: 'Balance After Transaction',
+        field: COLUMNS_FIELDS.BALANCE_AFTER_TRANSACTION,
+        valueGetter: (params) =>
+          formatEmptyCell(params.data?.transactions?.balance_after_transaction),
+      },
+      {
+        headerName: 'Method',
+        field: COLUMNS_FIELDS.TRANSACTION_METHOD,
+        valueGetter: (params) => formatEmptyCell(params.data?.transactions?.transaction_method),
+      },
+      {
+        headerName: 'Location',
+        field: COLUMNS_FIELDS.TRANSACTION_LOCATION,
+        valueGetter: (params) => formatEmptyCell(params.data?.transactions?.transaction_location),
+      },
+    ],
   },
 ])
 </script>
