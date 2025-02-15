@@ -76,6 +76,7 @@ const columnDefs = ref([
         headerName: 'Full Name',
         field: COLUMNS_FIELDS.FULL_NAME,
         valueGetter: (params) => formatEmptyCell(params.data?.full_name),
+        pinned: 'left',
       },
       {
         headerName: 'Birthday',
@@ -139,6 +140,7 @@ const columnDefs = ref([
           params.data?.account?.account_balance
             ? formatToUSD(params.data?.account?.account_balance)
             : '',
+        pinned: 'right',
       },
       {
         headerName: 'Currency',
