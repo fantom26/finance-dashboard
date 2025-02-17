@@ -21,7 +21,6 @@ export default {
     const index = state[types.CONSUMERS_STATE].findIndex((c) => c.id === updatedConsumer.id)
 
     if (index !== -1) {
-      console.log('updatedConsumer', updatedConsumer)
       state[types.CONSUMERS_STATE].splice(index, 1, updatedConsumer)
     }
   },

@@ -1,6 +1,6 @@
 <script setup>
 import { useStore } from 'vuex'
-import { computed, ref, shallowRef } from 'vue'
+import { computed, shallowRef } from 'vue'
 import types from '@/store/modules/consumers/types.js'
 import { AgGridVue } from 'ag-grid-vue3'
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community'
@@ -72,179 +72,192 @@ const pinnedBottomRowData = computed(() => {
   ]
 })
 
-const rowSelection = ref({
-  mode: 'multiRow',
-})
-
-const selectionColumnDef = ref({
-  sortable: true,
-  resizable: false,
-  width: 70,
-  suppressHeaderMenuButton: false,
-  pinned: 'left',
-})
-
-const defaultColDef = {
-  filter: true,
-  sortable: true,
-  valueFormatter: emptyCellFormatter,
-}
-
 const gridApi = shallowRef(null)
+
+const gridOptions = {
+  defaultColDef: {
+    filter: true,
+    sortable: true,
+    valueFormatter: emptyCellFormatter,
+  },
+  rowSelection: {
+    mode: 'multiRow',
+  },
+  selectionColumnDef: {
+    sortable: true,
+    resizable: false,
+    width: 70,
+    suppressHeaderMenuButton: false,
+    pinned: 'left',
+  },
+  columnDefs: [
+    {
+      headerName: 'General',
+      children: [
+        {
+          headerName: '№',
+          pinned: 'left',
+          filter: false,
+          width: 70,
+          valueGetter: (params) => params.node.rowIndex + 1,
+        },
+        {
+          headerName: 'Customer ID',
+          field: COLUMNS_FIELDS.CUSTOMER_ID,
+          cellDataType: 'text',
+        },
+        {
+          headerName: 'Full Name',
+          field: COLUMNS_FIELDS.FULL_NAME,
+          pinned: 'left',
+          editable: true,
+          cellDataType: 'text',
+        },
+        {
+          headerName: 'Birthday',
+          field: COLUMNS_FIELDS.BIRTHDAY,
+          cellDataType: 'dateString',
+          valueFormatter: dateFormatter,
+        },
+        {
+          headerName: 'Gender',
+          field: COLUMNS_FIELDS.GENDER,
+          cellDataType: 'text',
+        },
+        {
+          headerName: 'Email',
+          field: COLUMNS_FIELDS.EMAIL,
+          cellDataType: 'text',
+        },
+        {
+          headerName: 'Phone Number',
+          field: COLUMNS_FIELDS.PHONE_NUMBER,
+          cellDataType: 'text',
+        },
+        {
+          headerName: 'Address',
+          field: COLUMNS_FIELDS.ADDRESS,
+          cellDataType: 'text',
+        },
+        {
+          headerName: 'City',
+          field: COLUMNS_FIELDS.CITY,
+          cellDataType: 'text',
+        },
+        {
+          headerName: 'Country',
+          field: COLUMNS_FIELDS.COUNTRY,
+          cellDataType: 'text',
+        },
+        {
+          headerName: 'Employment Status',
+          field: COLUMNS_FIELDS.EMPLOYMENT_STATUS,
+          cellDataType: 'text',
+        },
+      ],
+    },
+    {
+      headerName: 'Account',
+      children: [
+        {
+          headerName: 'ID',
+          field: COLUMNS_FIELDS.ACCOUNT_ID,
+          cellDataType: 'text',
+        },
+        {
+          headerName: 'Type',
+          field: COLUMNS_FIELDS.ACCOUNT_TYPE,
+          cellDataType: 'text',
+        },
+        {
+          headerName: 'Balance',
+          field: COLUMNS_FIELDS.ACCOUNT_BALANCE,
+          pinned: 'right',
+          cellDataType: 'number',
+          valueFormatter: currencyFormatter,
+          ...editMoneyCellConfig,
+        },
+        {
+          headerName: 'Currency',
+          field: COLUMNS_FIELDS.CURRENCY,
+          cellDataType: 'text',
+        },
+        {
+          headerName: 'Open Date',
+          field: COLUMNS_FIELDS.ACCOUNT_OPEN_DATE,
+          cellDataType: 'dateString',
+          valueFormatter: dateFormatter,
+        },
+        {
+          headerName: 'Status',
+          field: COLUMNS_FIELDS.ACCOUNT_STATUS,
+          cellDataType: 'text',
+        },
+      ],
+    },
+    {
+      headerName: 'Transaction',
+      children: [
+        {
+          headerName: 'ID',
+          field: COLUMNS_FIELDS.TRANSACTION_ID,
+          columnGroupShow: 'open',
+          cellDataType: 'text',
+        },
+        {
+          headerName: 'Date',
+          field: COLUMNS_FIELDS.TRANSACTION_DATE,
+          cellDataType: 'dateString',
+          valueFormatter: dateFormatter,
+        },
+        {
+          headerName: 'Type',
+          field: COLUMNS_FIELDS.TRANSACTION_TYPE,
+          cellDataType: 'text',
+        },
+        {
+          headerName: 'Amount',
+          field: COLUMNS_FIELDS.TRANSACTION_AMOUNT,
+          cellDataType: 'number',
+          valueFormatter: currencyFormatter,
+          ...editMoneyCellConfig,
+        },
+        {
+          headerName: 'Currency',
+          field: COLUMNS_FIELDS.TRANSACTION_CURRENCY,
+          cellDataType: 'text',
+        },
+        {
+          headerName: 'Balance After Transaction',
+          field: COLUMNS_FIELDS.BALANCE_AFTER_TRANSACTION,
+          cellDataType: 'number',
+          valueFormatter: currencyFormatter,
+        },
+        {
+          headerName: 'Method',
+          field: COLUMNS_FIELDS.TRANSACTION_METHOD,
+          cellDataType: 'text',
+        },
+        {
+          headerName: 'Location',
+          field: COLUMNS_FIELDS.TRANSACTION_LOCATION,
+          cellDataType: 'text',
+        },
+      ],
+    },
+  ],
+  readOnlyEdit: true,
+  pagination: true,
+  paginationPageSize: 500,
+  paginationPageSizeSelector: Array.from({ length: 5 }, (_, i) => (i + 1) * 100),
+  paginationNumberFormatter: (params) => {
+    return '[' + params.value.toLocaleString() + ']'
+  },
+}
 
 const onGridReady = (params) => {
   gridApi.value = params.api
 }
-
-const columnDefs = ref([
-  {
-    headerName: 'General',
-    children: [
-      {
-        headerName: 'Customer ID',
-        field: COLUMNS_FIELDS.CUSTOMER_ID,
-        cellDataType: 'text',
-      },
-      {
-        headerName: 'Full Name',
-        field: COLUMNS_FIELDS.FULL_NAME,
-        pinned: 'left',
-        editable: true,
-        cellDataType: 'text',
-      },
-      {
-        headerName: 'Birthday',
-        field: COLUMNS_FIELDS.BIRTHDAY,
-        cellDataType: 'dateString',
-        valueFormatter: dateFormatter,
-      },
-      {
-        headerName: 'Gender',
-        field: COLUMNS_FIELDS.GENDER,
-        cellDataType: 'text',
-      },
-      {
-        headerName: 'Email',
-        field: COLUMNS_FIELDS.EMAIL,
-        cellDataType: 'text',
-      },
-      {
-        headerName: 'Phone Number',
-        field: COLUMNS_FIELDS.PHONE_NUMBER,
-        cellDataType: 'text',
-      },
-      {
-        headerName: 'Address',
-        field: COLUMNS_FIELDS.ADDRESS,
-        cellDataType: 'text',
-      },
-      {
-        headerName: 'City',
-        field: COLUMNS_FIELDS.CITY,
-        cellDataType: 'text',
-      },
-      {
-        headerName: 'Country',
-        field: COLUMNS_FIELDS.COUNTRY,
-        cellDataType: 'text',
-      },
-      {
-        headerName: 'Employment Status',
-        field: COLUMNS_FIELDS.EMPLOYMENT_STATUS,
-        cellDataType: 'text',
-      },
-    ],
-  },
-  {
-    headerName: 'Account',
-    children: [
-      {
-        headerName: 'ID',
-        field: COLUMNS_FIELDS.ACCOUNT_ID,
-        cellDataType: 'text',
-      },
-      {
-        headerName: 'Type',
-        field: COLUMNS_FIELDS.ACCOUNT_TYPE,
-        cellDataType: 'text',
-      },
-      {
-        headerName: 'Balance',
-        field: COLUMNS_FIELDS.ACCOUNT_BALANCE,
-        pinned: 'right',
-        cellDataType: 'number',
-        valueFormatter: currencyFormatter,
-        ...editMoneyCellConfig,
-      },
-      {
-        headerName: 'Currency',
-        field: COLUMNS_FIELDS.CURRENCY,
-        cellDataType: 'text',
-      },
-      {
-        headerName: 'Open Date',
-        field: COLUMNS_FIELDS.ACCOUNT_OPEN_DATE,
-        cellDataType: 'dateString',
-        valueFormatter: dateFormatter,
-      },
-      {
-        headerName: 'Status',
-        field: COLUMNS_FIELDS.ACCOUNT_STATUS,
-        cellDataType: 'text',
-      },
-    ],
-  },
-  {
-    headerName: 'Transaction',
-    children: [
-      {
-        headerName: 'ID',
-        field: COLUMNS_FIELDS.TRANSACTION_ID,
-        columnGroupShow: 'open',
-        cellDataType: 'text',
-      },
-      {
-        headerName: 'Date',
-        field: COLUMNS_FIELDS.TRANSACTION_DATE,
-        cellDataType: 'dateString',
-        valueFormatter: dateFormatter,
-      },
-      {
-        headerName: 'Type',
-        field: COLUMNS_FIELDS.TRANSACTION_TYPE,
-        cellDataType: 'text',
-      },
-      {
-        headerName: 'Amount',
-        field: COLUMNS_FIELDS.TRANSACTION_AMOUNT,
-        cellDataType: 'number',
-        valueFormatter: currencyFormatter,
-        ...editMoneyCellConfig,
-      },
-      {
-        headerName: 'Currency',
-        field: COLUMNS_FIELDS.TRANSACTION_CURRENCY,
-        cellDataType: 'text',
-      },
-      {
-        headerName: 'Balance After Transaction',
-        field: COLUMNS_FIELDS.BALANCE_AFTER_TRANSACTION,
-        cellDataType: 'number',
-        valueFormatter: currencyFormatter,
-      },
-      {
-        headerName: 'Method',
-        field: COLUMNS_FIELDS.TRANSACTION_METHOD,
-        cellDataType: 'text',
-      },
-      {
-        headerName: 'Location',
-        field: COLUMNS_FIELDS.TRANSACTION_LOCATION,
-        cellDataType: 'text',
-      },
-    ],
-  },
-])
 
 function onCellEditRequest(event) {
   let data
@@ -270,16 +283,11 @@ function onCellEditRequest(event) {
     <div class="table-page">
       <ag-grid-vue
         :rowData="rowData"
-        :columnDefs="columnDefs"
+        :gridOptions="gridOptions"
         style="width: 100%; height: 100%"
-        :defaultColDef="defaultColDef"
-        :pagination="true"
         :pinnedBottomRowData="pinnedBottomRowData"
-        :selectionColumnDef="selectionColumnDef"
-        :rowSelection="rowSelection"
         @grid-ready="onGridReady"
         @cell-edit-request="onCellEditRequest"
-        :readOnlyEdit="true"
       />
     </div>
   </the-container>
