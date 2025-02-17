@@ -1,10 +1,11 @@
 <script setup>
 import { useStore } from 'vuex'
-import { computed, shallowRef } from 'vue'
+import { computed, provide, shallowRef } from 'vue'
 import types from '@/store/modules/consumers/types.js'
 import { AgGridVue } from 'ag-grid-vue3'
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community'
 import TheContainer from '@/components/base/BaseContainer.vue'
+import DeleteButtonComponent from '@/components/the-table/DeleteButtonComponent.vue'
 import {
   createNestedObject,
   currencyFormatter,
@@ -245,6 +246,14 @@ const gridOptions = {
         },
       ],
     },
+    {
+      headerName: 'Actions',
+      filter: false,
+      sortable: false,
+      resizable: false,
+      width: 100,
+      cellRenderer: DeleteButtonComponent,
+    },
   ],
   readOnlyEdit: true,
   pagination: true,
@@ -276,6 +285,8 @@ function onCellEditRequest(event) {
     data,
   })
 }
+
+provide('store', store)
 </script>
 
 <template>

@@ -15,4 +15,12 @@ export default {
       commit(types.UPDATE_CONSUMER_MUTATION, response.data)
     }
   },
+
+  async [types.DELETE_CONSUMER_ACTION]({ commit }, payload) {
+    const response = await ConsumersService.deleteConsumer(payload)
+
+    if (response.status === 200) {
+      commit(types.DELETE_CONSUMER_MUTATION, payload)
+    }
+  },
 }

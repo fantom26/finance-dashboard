@@ -15,4 +15,8 @@ export class ConsumersService {
   static async updateConsumer({ id, data }) {
     return $apiAuth.patch(`/customers/${id}`, data)
   }
+
+  static async deleteConsumer({ id }) {
+    return $apiAuth.delete(`/customers/${id}`)
+  }
 }

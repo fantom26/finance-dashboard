@@ -24,6 +24,13 @@ export default {
       state[types.CONSUMERS_STATE].splice(index, 1, updatedConsumer)
     }
   },
+  [types.DELETE_CONSUMER_MUTATION](state, updatedConsumer) {
+    const index = state[types.CONSUMERS_STATE].findIndex((c) => c.id === updatedConsumer.id)
+
+    if (index !== -1) {
+      state[types.CONSUMERS_STATE].splice(index, 1)
+    }
+  },
 }
 
 function countEntityByProperty(category, value, summary, consumer) {
