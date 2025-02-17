@@ -37,10 +37,10 @@ const COLUMNS_FIELDS = {
 }
 
 const store = useStore()
-const consumers = computed(() => store.getters[`consumers/${types.CONSUMERS_STATE}`])
+const rowData = computed(() => store.getters[`consumers/${types.CONSUMERS_STATE}`])
 
 const pinnedBottomRowData = computed(() => {
-  const { totalTransactionAmount, totalAccountBalance } = consumers.value.reduce(
+  const { totalTransactionAmount, totalAccountBalance } = rowData.value.reduce(
     (totals, row) => {
       totals.totalTransactionAmount += +row.transactions?.amount || 0
       totals.totalAccountBalance += +row.account?.account_balance || 0
@@ -228,7 +228,7 @@ const columnDefs = ref([
   <the-container>
     <div class="table-page">
       <ag-grid-vue
-        :rowData="consumers"
+        :rowData="rowData"
         :columnDefs="columnDefs"
         style="width: 100%; height: 100%"
         :defaultColDef="defaultColDef"
