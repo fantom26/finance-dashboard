@@ -1,6 +1,6 @@
 <script setup>
 import { useStore } from 'vuex'
-import { computed, ref } from 'vue'
+import { computed, ref, shallowRef } from 'vue'
 import types from '@/store/modules/consumers/types.js'
 import { AgGridVue } from 'ag-grid-vue3'
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community'
@@ -34,6 +34,14 @@ const COLUMNS_FIELDS = {
   BALANCE_AFTER_TRANSACTION: 'transactions.balance_after_transaction',
   TRANSACTION_METHOD: 'transactions.transaction_method',
   TRANSACTION_LOCATION: 'transactions.transaction_location',
+}
+
+const editMoneyCellConfig = {
+  editable: true,
+  cellEditor: 'agTextCellEditor',
+  cellEditorParams: {
+    minLength: 1,
+  },
 }
 
 const store = useStore()
@@ -74,6 +82,12 @@ const defaultColDef = {
   filter: true,
   sortable: true,
   valueFormatter: emptyCellFormatter,
+}
+
+const gridApi = shallowRef(null)
+
+const onGridReady = (params) => {
+  gridApi.value = params.api
 }
 
 const columnDefs = ref([
@@ -153,6 +167,7 @@ const columnDefs = ref([
         pinned: 'right',
         cellDataType: 'number',
         valueFormatter: currencyFormatter,
+        ...editMoneyCellConfig,
       },
       {
         headerName: 'Currency',
@@ -197,6 +212,7 @@ const columnDefs = ref([
         field: COLUMNS_FIELDS.TRANSACTION_AMOUNT,
         cellDataType: 'number',
         valueFormatter: currencyFormatter,
+        ...editMoneyCellConfig,
       },
       {
         headerName: 'Currency',
@@ -236,6 +252,7 @@ const columnDefs = ref([
         :pinnedBottomRowData="pinnedBottomRowData"
         :selectionColumnDef="selectionColumnDef"
         :rowSelection="rowSelection"
+        @grid-ready="onGridReady"
       />
     </div>
   </the-container>
