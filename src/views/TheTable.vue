@@ -5,12 +5,17 @@ import types from '@/store/modules/consumers/types.js'
 import { AgGridVue } from 'ag-grid-vue3'
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community'
 import TheContainer from '@/components/base/BaseContainer.vue'
-import { currencyFormatter, dateFormatter, emptyCellFormatter } from '@/utils/helpers.js'
+import {
+  createNestedObject,
+  currencyFormatter,
+  dateFormatter,
+  emptyCellFormatter,
+} from '@/utils/helpers.js'
 
 ModuleRegistry.registerModules([AllCommunityModule])
 
 const COLUMNS_FIELDS = {
-  CUSTOMER_ID: 'customer_id',
+  CUSTOMER_ID: 'id',
   FULL_NAME: 'full_name',
   BIRTHDAY: 'date_of_birth',
   GENDER: 'gender',
@@ -241,7 +246,17 @@ const columnDefs = ref([
 ])
 
 function onCellEditRequest(event) {
-  console.log(event)
+  let data
+  const path = event.colDef.field
+
+  if (path.includes('.')) {
+    data = createNestedObject(path, event.newValue)
+  }
+
+  store.dispatch(`consumers/${types.UPDATE_CONSUMER_INFO_ACTION}`, {
+    id: event.data.id,
+    data,
+  })
 }
 </script>
 
