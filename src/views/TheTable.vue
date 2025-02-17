@@ -109,6 +109,7 @@ const columnDefs = ref([
         headerName: 'Full Name',
         field: COLUMNS_FIELDS.FULL_NAME,
         pinned: 'left',
+        editable: true,
         cellDataType: 'text',
       },
       {
@@ -251,6 +252,10 @@ function onCellEditRequest(event) {
 
   if (path.includes('.')) {
     data = createNestedObject(path, event.newValue)
+  } else {
+    data = {
+      [path]: event.newValue,
+    }
   }
 
   store.dispatch(`consumers/${types.UPDATE_CONSUMER_INFO_ACTION}`, {

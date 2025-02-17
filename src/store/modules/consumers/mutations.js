@@ -17,6 +17,14 @@ export default {
     )
     state[types.CONSUMERS_GENDER_STATE] = formatData(payload, 'gender', null, countEntityByProperty)
   },
+  [types.UPDATE_CONSUMER_MUTATION](state, updatedConsumer) {
+    const index = state[types.CONSUMERS_STATE].findIndex((c) => c.id === updatedConsumer.id)
+
+    if (index !== -1) {
+      console.log('updatedConsumer', updatedConsumer)
+      state[types.CONSUMERS_STATE].splice(index, 1, updatedConsumer)
+    }
+  },
 }
 
 function countEntityByProperty(category, value, summary, consumer) {

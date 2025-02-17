@@ -8,9 +8,11 @@ export default {
     commit(types.SET_CONSUMERS_MUTATION, response.data)
   },
 
-  async [types.UPDATE_CONSUMER_INFO_ACTION](_, payload) {
+  async [types.UPDATE_CONSUMER_INFO_ACTION]({ commit }, payload) {
     const response = await ConsumersService.updateConsumer(payload)
 
-    console.log(response)
+    if (response.status === 200) {
+      commit(types.UPDATE_CONSUMER_MUTATION, response.data)
+    }
   },
 }
