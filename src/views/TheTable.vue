@@ -42,6 +42,7 @@ const editMoneyCellConfig = {
   cellEditorParams: {
     minLength: 1,
   },
+  valueParser: (params) => Number(params.newValue),
 }
 
 const store = useStore()
@@ -238,6 +239,10 @@ const columnDefs = ref([
     ],
   },
 ])
+
+function onCellEditRequest(event) {
+  console.log(event)
+}
 </script>
 
 <template>
@@ -253,6 +258,8 @@ const columnDefs = ref([
         :selectionColumnDef="selectionColumnDef"
         :rowSelection="rowSelection"
         @grid-ready="onGridReady"
+        @cell-edit-request="onCellEditRequest"
+        :readOnlyEdit="true"
       />
     </div>
   </the-container>
