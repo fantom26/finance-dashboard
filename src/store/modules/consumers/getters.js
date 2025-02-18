@@ -1,4 +1,9 @@
 import types from './types.js'
+import {
+  countConsumerByTransactionInfo,
+  countEntityByProperty,
+  formatData,
+} from '@/utils/helpers.js'
 
 export default {
   [types.CONSUMERS_STATE](state) {
@@ -8,12 +13,22 @@ export default {
     return getters[types.CONSUMERS_STATE].length > 0
   },
   [types.TRANSACTION_TYPE_DISTRIBUTION_STATE](state) {
-    return state[types.TRANSACTION_TYPE_DISTRIBUTION_STATE]
+    return formatData(
+      state[types.CONSUMERS_STATE],
+      'transaction_type',
+      'transaction_amount',
+      countConsumerByTransactionInfo,
+    )
   },
   [types.TRANSACTION_LOCATION_STATE](state) {
-    return state[types.TRANSACTION_LOCATION_STATE]
+    return formatData(
+      state[types.CONSUMERS_STATE],
+      'transaction_location',
+      'transaction_amount',
+      countConsumerByTransactionInfo,
+    )
   },
   [types.CONSUMERS_GENDER_STATE](state) {
-    return state[types.CONSUMERS_GENDER_STATE]
+    return formatData(state[types.CONSUMERS_STATE], 'gender', null, countEntityByProperty)
   },
 }
