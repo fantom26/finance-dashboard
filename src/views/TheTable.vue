@@ -3,7 +3,7 @@ import { useStore } from 'vuex'
 import { computed, provide, shallowRef } from 'vue'
 import types from '@/store/modules/consumers/types.js'
 import { AgGridVue } from 'ag-grid-vue3'
-import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community'
+import { AllCommunityModule, ModuleRegistry, themeBalham } from 'ag-grid-community'
 import TheContainer from '@/components/base/BaseContainer.vue'
 import DeleteButtonComponent from '@/components/the-table/DeleteButtonComponent.vue'
 import { currencyFormatter, dateFormatter, emptyCellFormatter } from '@/utils/helpers.js'
@@ -71,6 +71,7 @@ const pinnedBottomRowData = computed(() => {
 const gridApi = shallowRef(null)
 
 const gridOptions = {
+  theme: themeBalham,
   defaultColDef: {
     filter: true,
     sortable: true,
