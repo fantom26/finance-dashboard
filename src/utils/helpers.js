@@ -1,5 +1,5 @@
 function formatValue(value, formatter) {
-  if (!value) return 'N/A'
+  if (!value) return ''
   return formatter(value)
 }
 
