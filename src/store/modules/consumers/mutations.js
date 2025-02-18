@@ -6,13 +6,13 @@ export default {
     state[types.TRANSACTION_TYPE_DISTRIBUTION_STATE] = formatData(
       payload,
       'transaction_type',
-      'amount',
+      'transaction_amount',
       countConsumerByTransactionInfo,
     )
     state[types.TRANSACTION_LOCATION_STATE] = formatData(
       payload,
       'transaction_location',
-      'amount',
+      'transaction_amount',
       countConsumerByTransactionInfo,
     )
     state[types.CONSUMERS_GENDER_STATE] = formatData(payload, 'gender', null, countEntityByProperty)
@@ -43,11 +43,11 @@ function countEntityByProperty(category, value, summary, consumer) {
 }
 
 function countConsumerByTransactionInfo(category, value, summary, consumer) {
-  const type = consumer.transactions[category]
+  const type = consumer[category]
   if (!Object.prototype.hasOwnProperty.call(summary, type)) {
     summary[type] = 0
   }
-  summary[type] += consumer.transactions[value]
+  summary[type] += consumer[value]
   return summary
 }
 

@@ -17,17 +17,3 @@ export const currencyFormatter = (params, currencySymbol = '$') =>
 function formatNumber(number) {
   return Math.floor(number).toLocaleString()
 }
-
-export function createNestedObject(path, value) {
-  const keys = path.split('.')
-  let obj = {}
-  let current = obj
-
-  for (let i = 0; i < keys.length - 1; i++) {
-    current[keys[i]] = {}
-    current = current[keys[i]]
-  }
-
-  current[keys[keys.length - 1]] = value
-  return obj
-}

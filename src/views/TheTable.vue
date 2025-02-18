@@ -6,12 +6,7 @@ import { AgGridVue } from 'ag-grid-vue3'
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community'
 import TheContainer from '@/components/base/BaseContainer.vue'
 import DeleteButtonComponent from '@/components/the-table/DeleteButtonComponent.vue'
-import {
-  createNestedObject,
-  currencyFormatter,
-  dateFormatter,
-  emptyCellFormatter,
-} from '@/utils/helpers.js'
+import { currencyFormatter, dateFormatter, emptyCellFormatter } from '@/utils/helpers.js'
 
 ModuleRegistry.registerModules([AllCommunityModule])
 
@@ -269,20 +264,13 @@ const onGridReady = (params) => {
 }
 
 function onCellEditRequest(event) {
-  let data
   const path = event.colDef.field
-
-  if (path.includes('.')) {
-    data = createNestedObject(path, event.newValue)
-  } else {
-    data = {
-      [path]: event.newValue,
-    }
-  }
 
   store.dispatch(`consumers/${types.UPDATE_CONSUMER_INFO_ACTION}`, {
     id: event.data.id,
-    data,
+    data: {
+      [path]: event.newValue,
+    },
   })
 }
 
