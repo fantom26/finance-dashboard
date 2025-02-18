@@ -1,3 +1,6 @@
+import phoneMasks from '@/utils/phoneMasks.js'
+import { Mask } from 'maska'
+
 function formatValue(value, formatter) {
   if (!value) return ''
   return formatter(value)
@@ -16,6 +19,16 @@ export const currencyFormatter = (params, currencySymbol = '$') =>
 
 function formatNumber(number) {
   return Math.floor(number).toLocaleString()
+}
+
+export function formatPhoneNumber(params) {
+  if (!params.value || !params.data.country_code) return params.value
+
+  const countryCode = params.data.country_code
+
+  const mask = new Mask({ mask: phoneMasks[countryCode] || '###-###-####' })
+
+  return mask.masked(params.value)
 }
 
 export function countEntityByProperty(category, value, summary, consumer) {

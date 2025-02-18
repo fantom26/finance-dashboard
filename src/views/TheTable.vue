@@ -6,7 +6,12 @@ import { AgGridVue } from 'ag-grid-vue3'
 import { AllCommunityModule, ModuleRegistry, themeBalham } from 'ag-grid-community'
 import TheContainer from '@/components/base/BaseContainer.vue'
 import DeleteButtonComponent from '@/components/the-table/DeleteButtonComponent.vue'
-import { currencyFormatter, dateFormatter, emptyCellFormatter } from '@/utils/helpers.js'
+import {
+  currencyFormatter,
+  dateFormatter,
+  emptyCellFormatter,
+  formatPhoneNumber,
+} from '@/utils/helpers.js'
 
 ModuleRegistry.registerModules([AllCommunityModule])
 
@@ -120,6 +125,7 @@ const gridOptions = {
           headerName: 'Phone Number',
           field: COLUMNS_FIELDS.PHONE_NUMBER,
           cellDataType: 'text',
+          valueFormatter: formatPhoneNumber,
         },
         {
           headerName: 'Address',

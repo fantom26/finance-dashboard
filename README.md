@@ -4,8 +4,8 @@ These tasks are essential for the initial setup of the project and infrastructur
 - [X] **Create the Vue + Vite project**
 - [X] **Generate 2000 records for the data**
 - [X] **Connect dataset to json-server**
-- [ ] **Make service for working with API**
-- [ ] **Configure axios**
+- [X] **Make service for working with API**
+- [X] **Configure axios**
 - [X] **Set project folder structure**
 - [X] **Set eslint and prettier**
 - [X] **Set Vue Router**
@@ -17,11 +17,10 @@ These tasks are essential for the initial setup of the project and infrastructur
 These tasks ensure the core functionality is implemented and data is displayed properly.
 - [X] **Set `ag-grid-vue`**
 - [X] **View data from `json-server` to `ag-grid`**
-- [ ] **Make amount columns (editable)**
-- [ ] **Make reactive recalculation of total sum**
-- [ ] **Make total sum of transactions**
-- [ ] **Removing one record**
-- [ ] **Removing multiple records**
+- [X] **Make amount columns (editable)**
+- [X] **Make reactive recalculation of total sum**
+- [X] **Make total sum of transactions**
+- [X] **Removing one record**
 
 ## ✅ **Charts and Data Visualization**
 These tasks focus on integrating charts and data visualization into the project.
@@ -34,9 +33,9 @@ These tasks focus on integrating charts and data visualization into the project.
 ## ✅ **Table Enhancements and Filters**
 These tasks enhance the table's functionality and improve user interaction with the data.
 - [ ] **Enable only necessary modules in ag-grid**
-- [ ] **Add table filters**
-- [ ] **Add table sorting**
-- [ ] **Configure table theme**
+- [X] **Add table filters**
+- [X] **Add table sorting**
+- [X] **Configure table theme**
 
 ## ✅ **Data Formatting and Calculation Enhancements**
 These tasks ensure that data is properly formatted and calculations are accurate.
