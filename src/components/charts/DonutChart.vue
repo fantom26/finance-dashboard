@@ -3,7 +3,6 @@ import { onMounted, toRefs } from 'vue'
 import * as am5 from '@amcharts/amcharts5'
 import * as am5percent from '@amcharts/amcharts5/percent'
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated'
-import { defineProps } from 'vue'
 
 const props = defineProps({
   id: {
