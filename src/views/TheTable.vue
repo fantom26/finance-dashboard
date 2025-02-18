@@ -248,7 +248,16 @@ const gridOptions = {
       sortable: false,
       resizable: false,
       width: 100,
-      cellRenderer: DeleteButtonComponent,
+      cellRendererSelector: (params) => {
+        if (params.node.rowPinned === 'bottom') {
+          return undefined
+        }
+
+        return {
+          component: DeleteButtonComponent,
+          params,
+        }
+      },
     },
   ],
   readOnlyEdit: true,
