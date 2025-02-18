@@ -77,16 +77,6 @@ const gridOptions = {
     sortable: true,
     valueFormatter: emptyCellFormatter,
   },
-  rowSelection: {
-    mode: 'multiRow',
-  },
-  selectionColumnDef: {
-    sortable: true,
-    resizable: false,
-    width: 70,
-    suppressHeaderMenuButton: false,
-    pinned: 'left',
-  },
   columnDefs: [
     {
       headerName: 'General',
