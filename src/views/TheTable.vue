@@ -26,20 +26,20 @@ const COLUMNS_FIELDS = {
   CITY: 'city',
   COUNTRY: 'country',
   EMPLOYMENT_STATUS: 'employment_status',
-  ACCOUNT_ID: 'account.account_id',
-  ACCOUNT_TYPE: 'account.account_type',
-  ACCOUNT_BALANCE: 'account.account_balance',
-  CURRENCY: 'account.currency',
-  ACCOUNT_OPEN_DATE: 'account.account_open_date',
-  ACCOUNT_STATUS: 'account.account_status',
-  TRANSACTION_ID: 'transactions.transaction_id',
-  TRANSACTION_DATE: 'transactions.transaction_date',
-  TRANSACTION_TYPE: 'transactions.transaction_type',
-  TRANSACTION_AMOUNT: 'transactions.amount',
-  TRANSACTION_CURRENCY: 'transactions.currency',
-  BALANCE_AFTER_TRANSACTION: 'transactions.balance_after_transaction',
-  TRANSACTION_METHOD: 'transactions.transaction_method',
-  TRANSACTION_LOCATION: 'transactions.transaction_location',
+  ACCOUNT_ID: 'account_id',
+  ACCOUNT_TYPE: 'account_type',
+  ACCOUNT_BALANCE: 'account_balance',
+  CURRENCY: 'currency',
+  ACCOUNT_OPEN_DATE: 'account_open_date',
+  ACCOUNT_STATUS: 'account_status',
+  TRANSACTION_ID: 'transaction_id',
+  TRANSACTION_DATE: 'transaction_date',
+  TRANSACTION_TYPE: 'transaction_type',
+  TRANSACTION_AMOUNT: 'transaction_amount',
+  TRANSACTION_CURRENCY: 'currency',
+  BALANCE_AFTER_TRANSACTION: 'balance_after_transaction',
+  TRANSACTION_METHOD: 'transaction_method',
+  TRANSACTION_LOCATION: 'transaction_location',
 }
 
 const editMoneyCellConfig = {
@@ -57,8 +57,8 @@ const rowData = computed(() => store.getters[`consumers/${types.CONSUMERS_STATE}
 const pinnedBottomRowData = computed(() => {
   const { totalTransactionAmount, totalAccountBalance } = rowData.value.reduce(
     (totals, row) => {
-      totals.totalTransactionAmount += +row.transactions?.amount || 0
-      totals.totalAccountBalance += +row.account?.account_balance || 0
+      totals.totalTransactionAmount += +row.transaction_amount || 0
+      totals.totalAccountBalance += +row.account_balance || 0
       return totals
     },
     { totalTransactionAmount: 0, totalAccountBalance: 0 },
@@ -66,7 +66,7 @@ const pinnedBottomRowData = computed(() => {
 
   return [
     {
-      [COLUMNS_FIELDS.CUSTOMER_ID]: 'Total',
+      [COLUMNS_FIELDS.FULL_NAME]: 'Total',
       [COLUMNS_FIELDS.TRANSACTION_AMOUNT]: totalTransactionAmount,
       [COLUMNS_FIELDS.ACCOUNT_BALANCE]: totalAccountBalance,
     },
