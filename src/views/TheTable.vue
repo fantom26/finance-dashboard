@@ -309,11 +309,12 @@ provide('deleteRowInfo', deleteRowInfo)
 
 <template>
   <base-container>
-    <div class="table-page">
+    <div v-if="rowData.length === 0 || dataByTransLocation.length === 0">Loading...</div>
+    <div class="table-page" v-else>
       <ag-grid-vue
         :rowData="rowData"
         :gridOptions="gridOptions"
-        style="width: 100%; height: 100%"
+        style="width: 100%; height: 100%; flex: 0 0 76%"
         :pinnedBottomRowData="pinnedBottomRowData"
         @grid-ready="onGridReady"
         @cell-edit-request="onCellEditRequest"
@@ -343,7 +344,7 @@ provide('deleteRowInfo', deleteRowInfo)
   gap: 1.6rem;
 
   &__chart {
-    width: 500px;
+    flex: 0 0 23%;
     height: 500px;
   }
 }
