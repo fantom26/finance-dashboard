@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, toRefs } from 'vue'
+import { onMounted, toRefs, watch, shallowRef } from 'vue'
 import * as am5 from '@amcharts/amcharts5'
 import * as am5percent from '@amcharts/amcharts5/percent'
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated'
@@ -17,41 +17,54 @@ const props = defineProps({
 
 const { data, id } = toRefs(props)
 
+const root = shallowRef(null)
+const series = shallowRef(null)
+const legend = shallowRef(null)
+
+watch(data, (newData) => {
+  if (series.value) {
+    series.value.data.clear()
+    series.value.data.setAll(newData)
+
+    legend.value.data.clear()
+    legend.value.data.setAll(series.value.dataItems)
+  }
+})
+
 onMounted(() => {
-  const root = am5.Root.new(id.value)
+  root.value = am5.Root.new(id.value)
+  root.value.setThemes([am5themes_Animated.new(root.value)])
 
-  root.setThemes([am5themes_Animated.new(root)])
-
-  const chart = root.container.children.push(
-    am5percent.PieChart.new(root, {
-      layout: root.verticalLayout,
+  const chart = root.value.container.children.push(
+    am5percent.PieChart.new(root.value, {
+      layout: root.value.verticalLayout,
     }),
   )
 
-  const series = chart.series.push(
-    am5percent.PieSeries.new(root, {
+  series.value = chart.series.push(
+    am5percent.PieSeries.new(root.value, {
       valueField: 'value',
       categoryField: 'category',
     }),
   )
 
-  series.data.setAll(data.value)
-  series.labels.template.set('forceHidden', true)
-  series.ticks.template.set('forceHidden', true)
+  series.value.data.setAll(data.value)
+  series.value.labels.template.set('forceHidden', true)
+  series.value.ticks.template.set('forceHidden', true)
 
-  const legend = chart.children.push(
-    am5.Legend.new(root, {
+  legend.value = chart.children.push(
+    am5.Legend.new(root.value, {
       centerX: am5.percent(50),
       x: am5.percent(50),
-      layout: am5.GridLayout.new(root, {
+      layout: am5.GridLayout.new(root.value, {
         maxColumns: 3,
         fixedWidthGrid: true,
       }),
     }),
   )
-  legend.data.setAll(series.dataItems)
+  legend.value.data.setAll(series.value.dataItems)
 
-  return () => root.dispose()
+  return () => root.value.dispose()
 })
 </script>
 
