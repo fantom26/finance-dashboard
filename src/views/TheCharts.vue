@@ -8,15 +8,21 @@ import XYChart from '@/components/charts/XYChart.vue'
 import DonutChart from '@/components/charts/DonutChart.vue'
 
 const store = useStore()
-const hasConsumers = computed(() => store.getters[`consumers/${types.HAS_CONSUMERS_STATE}`])
-const consumers = computed(() => store.getters[`consumers/${types.CONSUMERS_STATE}`])
+const hasConsumers = computed(
+  () => store.getters[`${types.CONSUMERS_MODULE}/${types.HAS_CONSUMERS_STATE}`],
+)
+const consumers = computed(
+  () => store.getters[`${types.CONSUMERS_MODULE}/${types.CONSUMERS_STATE}`],
+)
 
 const dataByTransTypeDistribution = computed(
-  () => store.getters[`consumers/${types.TRANSACTION_TYPE_DISTRIBUTION_STATE}`],
+  () => store.getters[`${types.CONSUMERS_MODULE}/${types.TRANSACTION_TYPE_DISTRIBUTION_STATE}`],
 )
-const dataByGender = computed(() => store.getters[`consumers/${types.CONSUMERS_GENDER_STATE}`])
+const dataByGender = computed(
+  () => store.getters[`${types.CONSUMERS_MODULE}/${types.CONSUMERS_GENDER_STATE}`],
+)
 const dataByTransLocation = computed(
-  () => store.getters[`consumers/${types.TRANSACTION_LOCATION_STATE}`],
+  () => store.getters[`${types.CONSUMERS_MODULE}/${types.TRANSACTION_LOCATION_STATE}`],
 )
 </script>
 

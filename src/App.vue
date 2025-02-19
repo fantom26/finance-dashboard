@@ -20,7 +20,7 @@ import { useStore } from 'vuex'
 const store = useStore()
 
 onMounted(() => {
-  store.dispatch(`consumers/${types.LOAD_CONSUMERS_ACTION}`)
+  store.dispatch(`${types.CONSUMERS_MODULE}/${types.LOAD_CONSUMERS_ACTION}`)
 })
 </script>
 

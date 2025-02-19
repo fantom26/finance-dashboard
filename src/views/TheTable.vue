@@ -52,7 +52,7 @@ const editMoneyCellConfig = {
 }
 
 const store = useStore()
-const rowData = computed(() => store.getters[`consumers/${types.CONSUMERS_STATE}`])
+const rowData = computed(() => store.getters[`${types.CONSUMERS_MODULE}/${types.CONSUMERS_STATE}`])
 
 const pinnedBottomRowData = computed(() => {
   const { totalTransactionAmount, totalAccountBalance } = rowData.value.reduce(
@@ -272,7 +272,7 @@ const onGridReady = (params) => {
 function onCellEditRequest(event) {
   const path = event.colDef.field
 
-  store.dispatch(`consumers/${types.UPDATE_CONSUMER_INFO_ACTION}`, {
+  store.dispatch(`${types.CONSUMERS_MODULE}/${types.UPDATE_CONSUMER_INFO_ACTION}`, {
     id: event.data.id,
     data: {
       [path]: event.newValue,
@@ -286,7 +286,7 @@ const deleteRowInfo = ref({
 })
 
 function agreeDeleting() {
-  store.dispatch(`consumers/${types.DELETE_CONSUMER_ACTION}`, {
+  store.dispatch(`${types.CONSUMERS_MODULE}/${types.DELETE_CONSUMER_ACTION}`, {
     id: deleteRowInfo.value.id,
   })
 
@@ -301,7 +301,7 @@ function closeDialog() {
 }
 
 const dataByTransLocation = computed(
-  () => store.getters[`consumers/${types.TRANSACTION_LOCATION_STATE}`],
+  () => store.getters[`${types.CONSUMERS_MODULE}/${types.TRANSACTION_LOCATION_STATE}`],
 )
 
 provide('deleteRowInfo', deleteRowInfo)
