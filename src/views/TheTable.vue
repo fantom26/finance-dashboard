@@ -4,7 +4,6 @@ import { computed, provide, shallowRef } from 'vue'
 import types from '@/store/modules/consumers/types.js'
 import { AgGridVue } from 'ag-grid-vue3'
 import { AllCommunityModule, ModuleRegistry, themeBalham } from 'ag-grid-community'
-import BaseContainer from '@/components/base/BaseContainer.vue'
 import DeleteButtonComponent from '@/components/the-table/DeleteButtonComponent.vue'
 import {
   currencyFormatter,

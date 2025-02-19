@@ -23,7 +23,6 @@
 
 <script setup>
 import routes from '@/router/routes.js'
-import BaseContainer from '@/components/base/BaseContainer.vue'
 </script>
 
 <style lang="scss" scoped>

@@ -1,5 +1,4 @@
 <script setup>
-import BaseContainer from '@/components/base/BaseContainer.vue'
 import PieChart from '@/components/charts/PieChart.vue'
 import { computed } from 'vue'
 import types from '@/store/modules/consumers/types.js'
