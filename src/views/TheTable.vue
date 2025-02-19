@@ -1,6 +1,6 @@
 <script setup>
 import { useStore } from 'vuex'
-import { computed, provide, shallowRef } from 'vue'
+import { computed, provide, ref, shallowRef } from 'vue'
 import types from '@/store/modules/consumers/types.js'
 import { AgGridVue } from 'ag-grid-vue3'
 import { AllCommunityModule, ModuleRegistry, themeBalham } from 'ag-grid-community'
@@ -279,7 +279,27 @@ function onCellEditRequest(event) {
   })
 }
 
-provide('store', store)
+const deleteRowInfo = ref({
+  show: false,
+  id: null,
+})
+
+function agreeDeleting() {
+  store.dispatch(`consumers/${types.DELETE_CONSUMER_ACTION}`, {
+    id: deleteRowInfo.value.id,
+  })
+
+  closeDialog()
+}
+
+function closeDialog() {
+  deleteRowInfo.value = {
+    show: false,
+    id: null,
+  }
+}
+
+provide('deleteRowInfo', deleteRowInfo)
 </script>
 
 <template>
@@ -294,6 +314,16 @@ provide('store', store)
         @cell-edit-request="onCellEditRequest"
       />
     </div>
+    <base-dialog :show="deleteRowInfo.show" @close="closeDialog">
+      <template #header>
+        <h2 class="dialog-title">Are you sure?</h2>
+      </template>
+
+      <template #actions>
+        <base-button v-on:click="closeDialog">No</base-button>
+        <base-button v-on:click="agreeDeleting">Yes</base-button>
+      </template>
+    </base-dialog>
   </base-container>
 </template>
 
