@@ -41,6 +41,7 @@ These tasks enhance the table's functionality and improve user interaction with 
 These tasks ensure that data is properly formatted and calculations are accurate.
 - [ ] **Add formatting data using `numeral.js`**
 - [ ] **Add formatting data using `moment.js`**
+- [X] **Add formatting phone number using `maska.js`**
 - [ ] **Add country flag using `https://github.com/hampusborgos/country-flags`**
 
 ## ✅ **Optimization and Refactoring**

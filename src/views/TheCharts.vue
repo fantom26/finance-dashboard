@@ -1,5 +1,5 @@
 <script setup>
-import TheContainer from '@/components/base/BaseContainer.vue'
+import BaseContainer from '@/components/base/BaseContainer.vue'
 import PieChart from '@/components/charts/PieChart.vue'
 import { computed } from 'vue'
 import types from '@/store/modules/consumers/types.js'
@@ -23,7 +23,7 @@ const dataByTransLocation = computed(
 
 <template>
   <div>
-    <the-container>
+    <base-container>
       <div class="charts-grid" v-if="hasConsumers">
         <div class="charts-grid__item">
           <pie-chart id="transaction-type" :data="dataByTransTypeDistribution" />
@@ -42,7 +42,7 @@ const dataByTransLocation = computed(
         </div>
       </div>
       <p v-else>Loading...</p>
-    </the-container>
+    </base-container>
   </div>
 </template>
 

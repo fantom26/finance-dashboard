@@ -4,7 +4,7 @@ import { computed, provide, shallowRef } from 'vue'
 import types from '@/store/modules/consumers/types.js'
 import { AgGridVue } from 'ag-grid-vue3'
 import { AllCommunityModule, ModuleRegistry, themeBalham } from 'ag-grid-community'
-import TheContainer from '@/components/base/BaseContainer.vue'
+import BaseContainer from '@/components/base/BaseContainer.vue'
 import DeleteButtonComponent from '@/components/the-table/DeleteButtonComponent.vue'
 import {
   currencyFormatter,
@@ -284,7 +284,7 @@ provide('store', store)
 </script>
 
 <template>
-  <the-container>
+  <base-container>
     <div class="table-page">
       <ag-grid-vue
         :rowData="rowData"
@@ -295,7 +295,7 @@ provide('store', store)
         @cell-edit-request="onCellEditRequest"
       />
     </div>
-  </the-container>
+  </base-container>
 </template>
 
 <style scoped lang="scss">

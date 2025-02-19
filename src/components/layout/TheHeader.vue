@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <the-container>
+    <base-container>
       <div class="header__wrapper">
         <div class="header__nav">
           <router-link
@@ -17,13 +17,13 @@
           </router-link>
         </div>
       </div>
-    </the-container>
+    </base-container>
   </header>
 </template>
 
 <script setup>
 import routes from '@/router/routes.js'
-import TheContainer from '@/components/base/BaseContainer.vue'
+import BaseContainer from '@/components/base/BaseContainer.vue'
 </script>
 
 <style lang="scss" scoped>

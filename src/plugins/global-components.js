@@ -1,7 +1,9 @@
-import TheContainer from '@/components/base/BaseContainer.vue'
+import BaseContainer from '@/components/base/BaseContainer.vue'
+import BaseButton from '@/components/base/BaseButton.vue'
 
 export default {
   install(app) {
-    app.component('the-container', TheContainer)
+    app.component('base-container', BaseContainer)
+    app.component('base-button', BaseButton)
   },
 }
