@@ -11,6 +11,7 @@ import {
   emptyCellFormatter,
   formatPhoneNumber,
 } from '@/utils/helpers.js'
+import PieChart from '@/components/charts/PieChart.vue'
 
 ModuleRegistry.registerModules([AllCommunityModule])
 
@@ -299,6 +300,10 @@ function closeDialog() {
   }
 }
 
+const dataByTransLocation = computed(
+  () => store.getters[`consumers/${types.TRANSACTION_LOCATION_STATE}`],
+)
+
 provide('deleteRowInfo', deleteRowInfo)
 </script>
 
@@ -313,6 +318,9 @@ provide('deleteRowInfo', deleteRowInfo)
         @grid-ready="onGridReady"
         @cell-edit-request="onCellEditRequest"
       />
+      <div class="table-page__chart">
+        <pie-chart id="transaction-location" :data="dataByTransLocation" />
+      </div>
     </div>
     <base-dialog :show="deleteRowInfo.show" @close="closeDialog">
       <template #header>
@@ -330,5 +338,13 @@ provide('deleteRowInfo', deleteRowInfo)
 <style scoped lang="scss">
 .table-page {
   height: calc(100vh - var(--header-height));
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+
+  &__chart {
+    width: 500px;
+    height: 500px;
+  }
 }
 </style>

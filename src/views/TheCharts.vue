@@ -28,9 +28,6 @@ const dataByTransLocation = computed(
           <pie-chart id="transaction-type" :data="dataByTransTypeDistribution" />
         </div>
         <div class="charts-grid__item">
-          <pie-chart id="transaction-location" :data="dataByTransLocation" />
-        </div>
-        <div class="charts-grid__item">
           <map-chart id="consumers-by-countries" :data="consumers" />
         </div>
         <div class="charts-grid__item">
