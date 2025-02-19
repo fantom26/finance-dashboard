@@ -12,35 +12,9 @@ import {
   formatPhoneNumber,
 } from '@/utils/helpers.js'
 import PieChart from '@/components/charts/PieChart.vue'
+import USER_FIELDS from '@/entities/user.js'
 
 ModuleRegistry.registerModules([AllCommunityModule])
-
-const COLUMNS_FIELDS = {
-  CUSTOMER_ID: 'id',
-  FULL_NAME: 'full_name',
-  BIRTHDAY: 'date_of_birth',
-  GENDER: 'gender',
-  EMAIL: 'email',
-  PHONE_NUMBER: 'phone_number',
-  ADDRESS: 'address',
-  CITY: 'city',
-  COUNTRY: 'country',
-  EMPLOYMENT_STATUS: 'employment_status',
-  ACCOUNT_ID: 'account_id',
-  ACCOUNT_TYPE: 'account_type',
-  ACCOUNT_BALANCE: 'account_balance',
-  CURRENCY: 'currency',
-  ACCOUNT_OPEN_DATE: 'account_open_date',
-  ACCOUNT_STATUS: 'account_status',
-  TRANSACTION_ID: 'transaction_id',
-  TRANSACTION_DATE: 'transaction_date',
-  TRANSACTION_TYPE: 'transaction_type',
-  TRANSACTION_AMOUNT: 'transaction_amount',
-  TRANSACTION_CURRENCY: 'currency',
-  BALANCE_AFTER_TRANSACTION: 'balance_after_transaction',
-  TRANSACTION_METHOD: 'transaction_method',
-  TRANSACTION_LOCATION: 'transaction_location',
-}
 
 const editMoneyCellConfig = {
   editable: true,
@@ -57,8 +31,8 @@ const rowData = computed(() => store.getters[`${types.CONSUMERS_MODULE}/${types.
 const pinnedBottomRowData = computed(() => {
   const { totalTransactionAmount, totalAccountBalance } = rowData.value.reduce(
     (totals, row) => {
-      totals.totalTransactionAmount += +row.transaction_amount || 0
-      totals.totalAccountBalance += +row.account_balance || 0
+      totals.totalTransactionAmount += +row[USER_FIELDS.TRANSACTION_AMOUNT] || 0
+      totals.totalAccountBalance += +row[USER_FIELDS.ACCOUNT_BALANCE] || 0
       return totals
     },
     { totalTransactionAmount: 0, totalAccountBalance: 0 },
@@ -66,9 +40,9 @@ const pinnedBottomRowData = computed(() => {
 
   return [
     {
-      [COLUMNS_FIELDS.FULL_NAME]: 'Total',
-      [COLUMNS_FIELDS.TRANSACTION_AMOUNT]: totalTransactionAmount,
-      [COLUMNS_FIELDS.ACCOUNT_BALANCE]: totalAccountBalance,
+      [USER_FIELDS.FULL_NAME]: 'Total',
+      [USER_FIELDS.TRANSACTION_AMOUNT]: totalTransactionAmount,
+      [USER_FIELDS.ACCOUNT_BALANCE]: totalAccountBalance,
     },
   ]
 })
@@ -95,56 +69,56 @@ const gridOptions = {
         },
         {
           headerName: 'Customer ID',
-          field: COLUMNS_FIELDS.CUSTOMER_ID,
+          field: USER_FIELDS.CUSTOMER_ID,
           cellDataType: 'text',
         },
         {
           headerName: 'Full Name',
-          field: COLUMNS_FIELDS.FULL_NAME,
+          field: USER_FIELDS.FULL_NAME,
           pinned: 'left',
           editable: true,
           cellDataType: 'text',
         },
         {
           headerName: 'Birthday',
-          field: COLUMNS_FIELDS.BIRTHDAY,
+          field: USER_FIELDS.BIRTHDAY,
           cellDataType: 'dateString',
           valueFormatter: dateFormatter,
         },
         {
           headerName: 'Gender',
-          field: COLUMNS_FIELDS.GENDER,
+          field: USER_FIELDS.GENDER,
           cellDataType: 'text',
         },
         {
           headerName: 'Email',
-          field: COLUMNS_FIELDS.EMAIL,
+          field: USER_FIELDS.EMAIL,
           cellDataType: 'text',
         },
         {
           headerName: 'Phone Number',
-          field: COLUMNS_FIELDS.PHONE_NUMBER,
+          field: USER_FIELDS.PHONE_NUMBER,
           cellDataType: 'text',
           valueFormatter: formatPhoneNumber,
         },
         {
           headerName: 'Address',
-          field: COLUMNS_FIELDS.ADDRESS,
+          field: USER_FIELDS.ADDRESS,
           cellDataType: 'text',
         },
         {
           headerName: 'City',
-          field: COLUMNS_FIELDS.CITY,
+          field: USER_FIELDS.CITY,
           cellDataType: 'text',
         },
         {
           headerName: 'Country',
-          field: COLUMNS_FIELDS.COUNTRY,
+          field: USER_FIELDS.COUNTRY,
           cellDataType: 'text',
         },
         {
           headerName: 'Employment Status',
-          field: COLUMNS_FIELDS.EMPLOYMENT_STATUS,
+          field: USER_FIELDS.EMPLOYMENT_STATUS,
           cellDataType: 'text',
         },
       ],
@@ -154,17 +128,17 @@ const gridOptions = {
       children: [
         {
           headerName: 'ID',
-          field: COLUMNS_FIELDS.ACCOUNT_ID,
+          field: USER_FIELDS.ACCOUNT_ID,
           cellDataType: 'text',
         },
         {
           headerName: 'Type',
-          field: COLUMNS_FIELDS.ACCOUNT_TYPE,
+          field: USER_FIELDS.ACCOUNT_TYPE,
           cellDataType: 'text',
         },
         {
           headerName: 'Balance',
-          field: COLUMNS_FIELDS.ACCOUNT_BALANCE,
+          field: USER_FIELDS.ACCOUNT_BALANCE,
           pinned: 'right',
           cellDataType: 'number',
           valueFormatter: currencyFormatter,
@@ -172,18 +146,18 @@ const gridOptions = {
         },
         {
           headerName: 'Currency',
-          field: COLUMNS_FIELDS.CURRENCY,
+          field: USER_FIELDS.CURRENCY,
           cellDataType: 'text',
         },
         {
           headerName: 'Open Date',
-          field: COLUMNS_FIELDS.ACCOUNT_OPEN_DATE,
+          field: USER_FIELDS.ACCOUNT_OPEN_DATE,
           cellDataType: 'dateString',
           valueFormatter: dateFormatter,
         },
         {
           headerName: 'Status',
-          field: COLUMNS_FIELDS.ACCOUNT_STATUS,
+          field: USER_FIELDS.ACCOUNT_STATUS,
           cellDataType: 'text',
         },
       ],
@@ -193,47 +167,47 @@ const gridOptions = {
       children: [
         {
           headerName: 'ID',
-          field: COLUMNS_FIELDS.TRANSACTION_ID,
+          field: USER_FIELDS.TRANSACTION_ID,
           columnGroupShow: 'open',
           cellDataType: 'text',
         },
         {
           headerName: 'Date',
-          field: COLUMNS_FIELDS.TRANSACTION_DATE,
+          field: USER_FIELDS.TRANSACTION_DATE,
           cellDataType: 'dateString',
           valueFormatter: dateFormatter,
         },
         {
           headerName: 'Type',
-          field: COLUMNS_FIELDS.TRANSACTION_TYPE,
+          field: USER_FIELDS.TRANSACTION_TYPE,
           cellDataType: 'text',
         },
         {
           headerName: 'Amount',
-          field: COLUMNS_FIELDS.TRANSACTION_AMOUNT,
+          field: USER_FIELDS.TRANSACTION_AMOUNT,
           cellDataType: 'number',
           valueFormatter: currencyFormatter,
           ...editMoneyCellConfig,
         },
         {
           headerName: 'Currency',
-          field: COLUMNS_FIELDS.TRANSACTION_CURRENCY,
+          field: USER_FIELDS.TRANSACTION_CURRENCY,
           cellDataType: 'text',
         },
         {
           headerName: 'Balance After Transaction',
-          field: COLUMNS_FIELDS.BALANCE_AFTER_TRANSACTION,
+          field: USER_FIELDS.BALANCE_AFTER_TRANSACTION,
           cellDataType: 'number',
           valueFormatter: currencyFormatter,
         },
         {
           headerName: 'Method',
-          field: COLUMNS_FIELDS.TRANSACTION_METHOD,
+          field: USER_FIELDS.TRANSACTION_METHOD,
           cellDataType: 'text',
         },
         {
           headerName: 'Location',
-          field: COLUMNS_FIELDS.TRANSACTION_LOCATION,
+          field: USER_FIELDS.TRANSACTION_LOCATION,
           cellDataType: 'text',
         },
       ],

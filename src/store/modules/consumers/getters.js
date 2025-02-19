@@ -1,4 +1,6 @@
 import types from './types.js'
+import USER_FIELDS from '@/entities/user.js'
+
 import {
   countConsumerByTransactionInfo,
   countEntityByProperty,
@@ -15,20 +17,20 @@ export default {
   [types.TRANSACTION_TYPE_DISTRIBUTION_STATE](state) {
     return formatData(
       state[types.CONSUMERS_STATE],
-      'transaction_type',
-      'transaction_amount',
+      USER_FIELDS.TRANSACTION_TYPE,
+      USER_FIELDS.TRANSACTION_AMOUNT,
       countConsumerByTransactionInfo,
     )
   },
   [types.TRANSACTION_LOCATION_STATE](state) {
     return formatData(
       state[types.CONSUMERS_STATE],
-      'transaction_location',
-      'transaction_amount',
+      USER_FIELDS.TRANSACTION_LOCATION,
+      USER_FIELDS.TRANSACTION_AMOUNT,
       countConsumerByTransactionInfo,
     )
   },
   [types.CONSUMERS_GENDER_STATE](state) {
-    return formatData(state[types.CONSUMERS_STATE], 'gender', null, countEntityByProperty)
+    return formatData(state[types.CONSUMERS_STATE], USER_FIELDS.GENDER, null, countEntityByProperty)
   },
 }
