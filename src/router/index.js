@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import TheTable from '@/views/TheTable.vue'
+import Home from '@/views/home/HomeView.vue'
 import routes from './routes'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    { path: '/', redirect: routes.TABLE },
-    { path: routes.TABLE, component: TheTable },
+    { path: '/', redirect: routes.HOME },
+    { path: routes.HOME, component: Home },
     { path: routes.CHARTS, component: () => import('@/views/TheCharts.vue') },
     { path: routes.NOT_FOUND, component: () => import('@/views/NotFound.vue') },
   ],

@@ -1,5 +1,5 @@
 export default {
-  TABLE: '/table',
+  HOME: '/table',
   CHARTS: '/charts',
   NOT_FOUND: '/:notFound(.*)',
 }

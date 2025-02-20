@@ -4,7 +4,7 @@
       <div class="header__wrapper">
         <div class="header__nav">
           <router-link
-            :to="routes.TABLE"
+            :to="routes.HOME"
             class="header__nav-link"
             active-class="header__nav-link--active"
             >Table
