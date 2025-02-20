@@ -34,3 +34,5 @@ export default {
     return formatData(state[types.CONSUMERS_STATE], USER_FIELDS.GENDER, null, countEntityByProperty)
   },
 }
+
+export const getFromConsumerModule = (getterName) => `${types.CONSUMERS_MODULE}/${getterName}`

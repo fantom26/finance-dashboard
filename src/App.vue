@@ -16,11 +16,12 @@ import TheHeader from '@/components/layout/TheHeader.vue'
 import { onMounted } from 'vue'
 import types from '@/store/modules/consumers/types.js'
 import { useStore } from 'vuex'
+import { getFromConsumerModule } from '@/store/modules/consumers/getters.js'
 
 const store = useStore()
 
 onMounted(() => {
-  store.dispatch(`${types.CONSUMERS_MODULE}/${types.LOAD_CONSUMERS_ACTION}`)
+  store.dispatch(getFromConsumerModule(types.LOAD_CONSUMERS_ACTION))
 })
 </script>
 
