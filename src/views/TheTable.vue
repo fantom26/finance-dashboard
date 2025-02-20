@@ -13,17 +13,12 @@
       <div class="table-page__chart">
         <pie-chart id="transaction-location" :data="dataByTransLocation" />
       </div>
+      <delete-record-dialog
+        :show="deleteRowInfo.show"
+        @agree="agreeDeleting"
+        @close="closeDialog"
+      />
     </div>
-    <base-dialog :show="deleteRowInfo.show" @close="closeDialog">
-      <template #header>
-        <h2 class="dialog-title">Are you sure?</h2>
-      </template>
-
-      <template #actions>
-        <base-button v-on:click="closeDialog">No</base-button>
-        <base-button v-on:click="agreeDeleting">Yes</base-button>
-      </template>
-    </base-dialog>
   </base-container>
 </template>
 
@@ -34,6 +29,7 @@ import types from '@/store/modules/consumers/types.js'
 import { AgGridVue } from 'ag-grid-vue3'
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community'
 import PieChart from '@/components/charts/PieChart.vue'
+import DeleteRecordDialog from '@/views/home/Table/DeleteRecordDialog.vue'
 import USER_FIELDS from '@/entities/user.js'
 import gridOptions from '@/views/home/Table/config.js'
 import { getFromConsumerModule } from '@/store/modules/consumers/getters.js'
