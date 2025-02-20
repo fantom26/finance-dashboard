@@ -69,6 +69,10 @@ function closeDialog() {
   }
 }
 
+const isLoading = computed(
+  () => rowData.value.length === 0 || dataByTransLocation.value.length === 0,
+)
+
 const dataByTransLocation = computed(
   () => store.getters[`${types.CONSUMERS_MODULE}/${types.TRANSACTION_LOCATION_STATE}`],
 )
@@ -78,7 +82,7 @@ provide('deleteRowInfo', deleteRowInfo)
 
 <template>
   <base-container>
-    <div v-if="rowData.length === 0 || dataByTransLocation.length === 0">Loading...</div>
+    <div v-if="isLoading">Loading...</div>
     <div class="table-page" v-else>
       <ag-grid-vue
         :rowData="rowData"
