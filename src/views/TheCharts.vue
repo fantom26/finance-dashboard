@@ -2,17 +2,13 @@
   <div>
     <base-container>
       <div class="charts-grid" v-if="hasConsumers">
-        <div class="charts-grid__item">
-          <pie-chart id="transaction-type" :data="dataByTransTypeDistribution" />
-        </div>
-        <div class="charts-grid__item">
-          <map-chart id="consumers-by-countries" :data="consumers" />
-        </div>
-        <div class="charts-grid__item">
-          <x-y-chart name="Cities" id="amount-by-cities" :data="dataByTransLocation" />
-        </div>
-        <div class="charts-grid__item">
-          <donut-chart id="gender-chart" :data="dataByGender" />
+        <div class="charts-grid__item" v-for="chart in charts" :key="chart.id">
+          <component
+            :is="chart.component"
+            :id="chart.id"
+            :data="toValue(chart.data)"
+            :name="chart.name"
+          />
         </div>
       </div>
       <p v-else>Loading...</p>
@@ -21,10 +17,10 @@
 </template>
 
 <script setup>
-import PieChart from '@/components/charts/PieChart.vue'
-import { computed } from 'vue'
+import { computed, shallowRef, toValue } from 'vue'
 import types from '@/store/modules/consumers/types.js'
 import { useStore } from 'vuex'
+import PieChart from '@/components/charts/PieChart.vue'
 import MapChart from '@/components/charts/MapChart.vue'
 import XYChart from '@/components/charts/XYChart.vue'
 import DonutChart from '@/components/charts/DonutChart.vue'
@@ -36,7 +32,6 @@ const hasConsumers = computed(
 const consumers = computed(
   () => store.getters[`${types.CONSUMERS_MODULE}/${types.CONSUMERS_STATE}`],
 )
-
 const dataByTransTypeDistribution = computed(
   () => store.getters[`${types.CONSUMERS_MODULE}/${types.TRANSACTION_TYPE_DISTRIBUTION_STATE}`],
 )
@@ -46,6 +41,30 @@ const dataByGender = computed(
 const dataByTransLocation = computed(
   () => store.getters[`${types.CONSUMERS_MODULE}/${types.TRANSACTION_LOCATION_STATE}`],
 )
+
+const charts = shallowRef([
+  {
+    id: 'transaction-type',
+    data: dataByTransTypeDistribution,
+    component: PieChart,
+  },
+  {
+    id: 'consumers-by-countries',
+    data: consumers,
+    component: MapChart,
+  },
+  {
+    id: 'amount-by-cities',
+    data: dataByTransLocation,
+    name: 'Cities',
+    component: XYChart,
+  },
+  {
+    id: 'gender-chart',
+    data: dataByGender,
+    component: DonutChart,
+  },
+])
 </script>
 
 <style lang="scss" scoped>
