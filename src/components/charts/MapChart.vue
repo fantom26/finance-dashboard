@@ -1,3 +1,7 @@
+<template>
+  <div :id="id" style="width: 100%; height: 100%"></div>
+</template>
+
 <script setup>
 import { onMounted, toRefs } from 'vue'
 import * as am5 from '@amcharts/amcharts5'
@@ -69,7 +73,3 @@ onMounted(() => {
   })
 })
 </script>
-
-<template>
-  <div :id="id" style="width: 100%; height: 100%"></div>
-</template>

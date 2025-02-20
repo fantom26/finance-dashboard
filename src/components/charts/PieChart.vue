@@ -1,3 +1,7 @@
+<template>
+  <div :id="id" style="width: 100%; height: 100%"></div>
+</template>
+
 <script setup>
 import { onMounted, toRefs, watch, shallowRef } from 'vue'
 import * as am5 from '@amcharts/amcharts5'
@@ -67,7 +71,3 @@ onMounted(() => {
   return () => root.value.dispose()
 })
 </script>
-
-<template>
-  <div :id="id" style="width: 100%; height: 100%"></div>
-</template>

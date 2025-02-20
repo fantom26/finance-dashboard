@@ -1,3 +1,25 @@
+<template>
+  <div>
+    <base-container>
+      <div class="charts-grid" v-if="hasConsumers">
+        <div class="charts-grid__item">
+          <pie-chart id="transaction-type" :data="dataByTransTypeDistribution" />
+        </div>
+        <div class="charts-grid__item">
+          <map-chart id="consumers-by-countries" :data="consumers" />
+        </div>
+        <div class="charts-grid__item">
+          <x-y-chart name="Cities" id="amount-by-cities" :data="dataByTransLocation" />
+        </div>
+        <div class="charts-grid__item">
+          <donut-chart id="gender-chart" :data="dataByGender" />
+        </div>
+      </div>
+      <p v-else>Loading...</p>
+    </base-container>
+  </div>
+</template>
+
 <script setup>
 import PieChart from '@/components/charts/PieChart.vue'
 import { computed } from 'vue'
@@ -25,28 +47,6 @@ const dataByTransLocation = computed(
   () => store.getters[`${types.CONSUMERS_MODULE}/${types.TRANSACTION_LOCATION_STATE}`],
 )
 </script>
-
-<template>
-  <div>
-    <base-container>
-      <div class="charts-grid" v-if="hasConsumers">
-        <div class="charts-grid__item">
-          <pie-chart id="transaction-type" :data="dataByTransTypeDistribution" />
-        </div>
-        <div class="charts-grid__item">
-          <map-chart id="consumers-by-countries" :data="consumers" />
-        </div>
-        <div class="charts-grid__item">
-          <x-y-chart name="Cities" id="amount-by-cities" :data="dataByTransLocation" />
-        </div>
-        <div class="charts-grid__item">
-          <donut-chart id="gender-chart" :data="dataByGender" />
-        </div>
-      </div>
-      <p v-else>Loading...</p>
-    </base-container>
-  </div>
-</template>
 
 <style lang="scss" scoped>
 .charts-grid {

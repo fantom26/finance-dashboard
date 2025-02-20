@@ -1,3 +1,32 @@
+<template>
+  <base-container>
+    <div v-if="isLoading">Loading...</div>
+    <div class="table-page" v-else>
+      <ag-grid-vue
+        :rowData="rowData"
+        :gridOptions="gridOptions"
+        style="width: 100%; height: 100%; flex: 0 0 76%"
+        :pinnedBottomRowData="pinnedBottomRowData"
+        @grid-ready="onGridReady"
+        @cell-edit-request="onCellEditRequest"
+      />
+      <div class="table-page__chart">
+        <pie-chart id="transaction-location" :data="dataByTransLocation" />
+      </div>
+    </div>
+    <base-dialog :show="deleteRowInfo.show" @close="closeDialog">
+      <template #header>
+        <h2 class="dialog-title">Are you sure?</h2>
+      </template>
+
+      <template #actions>
+        <base-button v-on:click="closeDialog">No</base-button>
+        <base-button v-on:click="agreeDeleting">Yes</base-button>
+      </template>
+    </base-dialog>
+  </base-container>
+</template>
+
 <script setup>
 import { useStore } from 'vuex'
 import { computed, provide, ref, shallowRef } from 'vue'
@@ -79,35 +108,6 @@ const dataByTransLocation = computed(
 
 provide('deleteRowInfo', deleteRowInfo)
 </script>
-
-<template>
-  <base-container>
-    <div v-if="isLoading">Loading...</div>
-    <div class="table-page" v-else>
-      <ag-grid-vue
-        :rowData="rowData"
-        :gridOptions="gridOptions"
-        style="width: 100%; height: 100%; flex: 0 0 76%"
-        :pinnedBottomRowData="pinnedBottomRowData"
-        @grid-ready="onGridReady"
-        @cell-edit-request="onCellEditRequest"
-      />
-      <div class="table-page__chart">
-        <pie-chart id="transaction-location" :data="dataByTransLocation" />
-      </div>
-    </div>
-    <base-dialog :show="deleteRowInfo.show" @close="closeDialog">
-      <template #header>
-        <h2 class="dialog-title">Are you sure?</h2>
-      </template>
-
-      <template #actions>
-        <base-button v-on:click="closeDialog">No</base-button>
-        <base-button v-on:click="agreeDeleting">Yes</base-button>
-      </template>
-    </base-dialog>
-  </base-container>
-</template>
 
 <style scoped lang="scss">
 .table-page {

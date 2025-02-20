@@ -1,3 +1,9 @@
+<template>
+  <button :class="mode">
+    <slot></slot>
+  </button>
+</template>
+
 <script setup>
 import { toRefs } from 'vue'
 
@@ -11,9 +17,3 @@ const props = defineProps({
 
 const { mode } = toRefs(props)
 </script>
-
-<template>
-  <button :class="mode">
-    <slot></slot>
-  </button>
-</template>

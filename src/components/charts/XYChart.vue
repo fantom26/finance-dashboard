@@ -1,3 +1,7 @@
+<template>
+  <div :id="id" style="width: 100%; height: 100%"></div>
+</template>
+
 <script setup>
 import * as am5 from '@amcharts/amcharts5'
 import * as am5xy from '@amcharts/amcharts5/xy'
@@ -71,7 +75,3 @@ onMounted(() => {
   return () => root.dispose()
 })
 </script>
-
-<template>
-  <div :id="id" style="width: 100%; height: 100%"></div>
-</template>

@@ -1,3 +1,9 @@
+<template>
+  <div>
+    <base-button v-on:click="showDialog">Delete</base-button>
+  </div>
+</template>
+
 <script setup>
 import { inject } from 'vue'
 
@@ -9,12 +15,6 @@ function showDialog() {
   deleteRowInfo.value.id = params.data.id
 }
 </script>
-
-<template>
-  <div>
-    <base-button v-on:click="showDialog">Delete</base-button>
-  </div>
-</template>
 
 <style lang="scss">
 .dialog-title {

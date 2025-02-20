@@ -1,22 +1,3 @@
-<script setup>
-import { toRefs } from 'vue'
-
-const props = defineProps({
-  show: {
-    type: Boolean,
-    required: true,
-  },
-})
-
-const { show } = toRefs(props)
-
-const emit = defineEmits(['close'])
-
-function tryClose() {
-  emit('close')
-}
-</script>
-
 <template>
   <teleport to="body">
     <div v-if="show" @click="tryClose" class="backdrop"></div>
@@ -37,6 +18,25 @@ function tryClose() {
     </transition>
   </teleport>
 </template>
+
+<script setup>
+import { toRefs } from 'vue'
+
+const props = defineProps({
+  show: {
+    type: Boolean,
+    required: true,
+  },
+})
+
+const { show } = toRefs(props)
+
+const emit = defineEmits(['close'])
+
+function tryClose() {
+  emit('close')
+}
+</script>
 
 <style scoped>
 .backdrop {
