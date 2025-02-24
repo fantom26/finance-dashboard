@@ -27,14 +27,39 @@ import { useStore } from 'vuex'
 import { computed, provide, ref, shallowRef } from 'vue'
 import types from '@/store/modules/consumers/types.js'
 import { AgGridVue } from 'ag-grid-vue3'
-import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community'
+import {
+  ModuleRegistry,
+  ColumnHoverModule,
+  PinnedRowModule,
+  RowStyleModule,
+  PaginationModule,
+  TextFilterModule,
+  NumberFilterModule,
+  DateFilterModule,
+  TextEditorModule,
+  NumberEditorModule,
+  ValueCacheModule,
+  ClientSideRowModelModule,
+} from 'ag-grid-community'
 import PieChart from '@/components/charts/PieChart.vue'
 import DeleteRecordDialog from '@/views/home/Table/DeleteRecordDialog.vue'
 import USER_FIELDS from '@/entities/user.js'
 import gridOptions from '@/views/home/Table/config.js'
 import { getFromConsumerModule } from '@/store/modules/consumers/getters.js'
 
-ModuleRegistry.registerModules([AllCommunityModule])
+ModuleRegistry.registerModules([
+  ColumnHoverModule,
+  PinnedRowModule,
+  RowStyleModule,
+  PaginationModule,
+  TextFilterModule,
+  NumberFilterModule,
+  DateFilterModule,
+  TextEditorModule,
+  NumberEditorModule,
+  ValueCacheModule,
+  ClientSideRowModelModule,
+])
 
 const store = useStore()
 const rowData = computed(() => store.getters[getFromConsumerModule(types.CONSUMERS_STATE)])

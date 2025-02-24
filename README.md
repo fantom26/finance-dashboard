@@ -32,7 +32,7 @@ These tasks focus on integrating charts and data visualization into the project.
 
 ## ✅ **Table Enhancements and Filters**
 These tasks enhance the table's functionality and improve user interaction with the data.
-- [ ] **Enable only necessary modules in ag-grid**
+- [X] **Enable only necessary modules in ag-grid**
 - [X] **Add table filters**
 - [X] **Add table sorting**
 - [X] **Configure table theme**
@@ -47,8 +47,8 @@ These tasks ensure that data is properly formatted and calculations are accurate
 ## ✅ **Optimization and Refactoring**
 These tasks aim to optimize performance and ensure clean, maintainable code.
 - [ ] **Optimize rendering `ag-grid`**
-- [ ] **Make config files for any repetitive values (actions, getters, mutations, etc.)**
-- [ ] **Refactor project**
+- [X] **Make config files for any repetitive values (actions, getters, mutations, etc.)**
+- [X] **Refactor project**
 
 ## ✅ **UI/UX Enhancements and Final Touches**
 These tasks focus on improving the overall user experience and interface.
