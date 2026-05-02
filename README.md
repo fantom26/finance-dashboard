@@ -1,65 +1,83 @@
-## ✅ **Project Setup and Configuration**
-These tasks are essential for the initial setup of the project and infrastructure.
-- [X] **Write a plan for the project**
-- [X] **Create the Vue + Vite project**
-- [X] **Generate 2000 records for the data**
-- [X] **Connect dataset to json-server**
-- [X] **Make service for working with API**
-- [X] **Configure axios**
-- [X] **Set project folder structure**
-- [X] **Set eslint and prettier**
-- [X] **Set Vue Router**
-- [X] **Set Vuex**
-- [X] **Configure basic navigation (Table page, Charts page, and NotFound page)**
-- [X] **Set SCSS and put basic configuration for styles**
+# Finance visualization dashboard
 
-## ✅ **Basic Functionality: Table and Data Binding**
-These tasks ensure the core functionality is implemented and data is displayed properly.
-- [X] **Set `ag-grid-vue`**
-- [X] **View data from `json-server` to `ag-grid`**
-- [X] **Make amount columns (editable)**
-- [X] **Make reactive recalculation of total sum**
-- [X] **Make total sum of transactions**
-- [X] **Removing one record**
+## Description
 
-## ✅ **Charts and Data Visualization**
-These tasks focus on integrating charts and data visualization into the project.
-- [X] **Set `amcharts4`**
-- [X] **Chart 1: Consumers by gender (Donut Chart)**
-- [X] **Chart 2: Spends by countries (Map Chart)**
-- [X] **Chart 3: Expenses by cities (Bar Chart)**
-- [X] **Chart 4: Transactions by distribution method (Pie Chart)**
+Personal portfolio project: a Vue 3 + Vite finance-style dashboard backed by a mock REST API. It pairs a large editable data grid with charts that summarize the same dataset (transaction distribution, geography, cities, gender).
 
-## ✅ **Table Enhancements and Filters**
-These tasks enhance the table's functionality and improve user interaction with the data.
-- [X] **Enable only necessary modules in ag-grid**
-- [X] **Add table filters**
-- [X] **Add table sorting**
-- [X] **Configure table theme**
+## Problem statement
 
-## ✅ **Data Formatting and Calculation Enhancements**
-These tasks ensure that data is properly formatted and calculations are accurate.
-- [ ] **Add formatting data using `numeral.js`**
-- [ ] **Add formatting data using `moment.js`**
-- [X] **Add formatting phone number using `maska.js`**
-- [ ] **Add country flag using `https://github.com/hampusborgos/country-flags`**
+Finance and operations dashboards usually need two things at once: a data-heavy table that stays usable with thousands of rows, and charts that remain consistent with that table’s source of truth. This app exercises that combination—client-side grid behavior, derived aggregates for charts, and patch/delete flows against a local API.
 
-## ✅ **Optimization and Refactoring**
-These tasks aim to optimize performance and ensure clean, maintainable code.
-- [ ] **Optimize rendering `ag-grid`**
-- [X] **Make config files for any repetitive values (actions, getters, mutations, etc.)**
-- [X] **Refactor project**
+## Implemented features
 
-## ✅ **UI/UX Enhancements and Final Touches**
-These tasks focus on improving the overall user experience and interface.
-- [X] **Add animation for page transition**
-- [ ] **Improve UI/UX of the application**
-- [ ] **Made common components for working with reusable elements (e.g., button, modal, table row)**
+- **Data table (ag-grid)**: sorting, filtering, pagination, pinned totals row, editable numeric cells, row delete action with confirmation.
+- **Charts (amCharts 5)**: pie, map, bar/column, and donut views driven from store data.
+- **Routing (Vue Router)**: table route, charts gallery, not-found route.
+- **API layer (axios)**: load, patch, and delete customers against `json-server` and [`db.json`](db.json).
+- **Utilities**: currency/date formatters; phone masking with Maska.
+- **State (Vuex)**: single customers module with actions, mutations, and derived getters for chart series.
 
-## ✅ **Additional Considerations and Enhancements**
-Tasks for further refining the project and enhancing its usability.
-- [ ] **Make sure all components are responsive and mobile-friendly**
-- [ ] **Handle edge cases (e.g., empty data, no internet connection)**
-- [ ] **Write unit tests for key features (using Jest or Mocha)**
-- [ ] **Add documentation for the project (README, comments, code documentation)**
-- [ ] **Conduct a code review (or peer review if possible)**  
+## Setup
+
+### Prerequisites
+
+- Node.js 20+
+- Yarn
+
+### Install
+
+```bash
+yarn install
+```
+
+### Environment
+
+```bash
+cp .env.example .env
+```
+
+[`src/api/consumers.js`](src/api/consumers.js) reads `import.meta.env.VITE_API_URL` as the axios base URL (see [`.env.example`](.env.example)).
+
+### Run
+
+Terminal 1 — mock API (port `3000` by default):
+
+```bash
+yarn dev:api
+```
+
+Terminal 2 — Vite dev server:
+
+```bash
+yarn dev
+```
+
+Open the URL printed by Vite (often `http://localhost:5173`).
+
+### Production build
+
+```bash
+yarn build
+yarn preview
+```
+
+### Quality scripts
+
+```bash
+yarn lint
+yarn lint:fix
+yarn format:check
+yarn format
+```
+
+## Roadmap
+
+1. Audit and upgrade dependencies to current stable compatible versions.
+2. Migrate Vuex → **Pinia**.
+3. Adopt **TypeScript** (`vue-tsc`, typed API and grid models).
+4. Extract table, analytics, and chart lifecycle into **composables**.
+5. Add **Vitest** + **Vue Testing Library**; wire CI.
+6. Performance work on the large grid and chart updates (measure first).
+7. Accessibility pass: dialogs, focus, loading/error UX, chart alternatives.
+8. **Storybook** for shared components and critical UI states.
+9. **GitHub Actions**: lint, typecheck, test, build.
