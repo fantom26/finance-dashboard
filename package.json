@@ -17,8 +17,8 @@
   "dependencies": {
     "@amcharts/amcharts5": "^5.11.0",
     "@amcharts/amcharts5-geodata": "^5.1.4",
-    "ag-grid-community": "^33.0.4",
-    "ag-grid-vue3": "^33.0.4",
+    "ag-grid-community": "^35.2.1",
+    "ag-grid-vue3": "^35.2.1",
     "axios": "^1.16.0",
     "json-server": "^1.0.0-beta.3",
     "maska": "^3.1.0",
