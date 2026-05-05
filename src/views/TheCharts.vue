@@ -18,26 +18,18 @@
 
 <script setup>
 import { computed, shallowRef, toValue } from 'vue'
-import types from '@/store/modules/consumers/types.js'
-import { useStore } from 'vuex'
 import PieChart from '@/components/charts/PieChart.vue'
 import MapChart from '@/components/charts/MapChart.vue'
 import XYChart from '@/components/charts/XYChart.vue'
 import DonutChart from '@/components/charts/DonutChart.vue'
-import { getFromConsumerModule } from '@/store/modules/consumers/getters.js'
+import { useConsumersStore } from '@/stores/consumers.js'
 
-const store = useStore()
-const hasConsumers = computed(() => store.getters[getFromConsumerModule(types.HAS_CONSUMERS_STATE)])
-const consumers = computed(() => store.getters[getFromConsumerModule(types.CONSUMERS_STATE)])
-const dataByTransTypeDistribution = computed(
-  () => store.getters[getFromConsumerModule(types.TRANSACTION_TYPE_DISTRIBUTION_STATE)],
-)
-const dataByGender = computed(
-  () => store.getters[getFromConsumerModule(types.CONSUMERS_GENDER_STATE)],
-)
-const dataByTransLocation = computed(
-  () => store.getters[getFromConsumerModule(types.TRANSACTION_LOCATION_STATE)],
-)
+const consumersStore = useConsumersStore()
+const hasConsumers = computed(() => consumersStore.hasConsumers)
+const consumers = computed(() => consumersStore.consumers)
+const dataByTransTypeDistribution = computed(() => consumersStore.dataByTransTypeDistribution)
+const dataByGender = computed(() => consumersStore.dataByGender)
+const dataByTransLocation = computed(() => consumersStore.dataByTransLocation)
 
 const charts = shallowRef([
   {

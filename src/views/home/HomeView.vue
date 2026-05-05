@@ -23,9 +23,7 @@
 </template>
 
 <script setup>
-import { useStore } from 'vuex'
 import { computed, provide, ref, shallowRef } from 'vue'
-import types from '@/store/modules/consumers/types.js'
 import { AgGridVue } from 'ag-grid-vue3'
 import {
   ModuleRegistry,
@@ -45,7 +43,7 @@ import PieChart from '@/components/charts/PieChart.vue'
 import DeleteRecordDialog from '@/views/home/Table/DeleteRecordDialog.vue'
 import USER_FIELDS from '@/entities/user.js'
 import gridOptions from '@/views/home/Table/config.js'
-import { getFromConsumerModule } from '@/store/modules/consumers/getters.js'
+import { useConsumersStore } from '@/stores/consumers.js'
 
 ModuleRegistry.registerModules([
   ColumnHoverModule,
@@ -61,8 +59,8 @@ ModuleRegistry.registerModules([
   ClientSideRowModelModule,
 ])
 
-const store = useStore()
-const rowData = computed(() => store.getters[getFromConsumerModule(types.CONSUMERS_STATE)])
+const consumersStore = useConsumersStore()
+const rowData = computed(() => consumersStore.consumers)
 
 const pinnedBottomRowData = computed(() => {
   const { totalTransactionAmount, totalAccountBalance } = rowData.value.reduce(
@@ -92,7 +90,7 @@ const onGridReady = (params) => {
 function onCellEditRequest(event) {
   const path = event.colDef.field
 
-  store.dispatch(getFromConsumerModule(types.UPDATE_CONSUMER_INFO_ACTION), {
+  consumersStore.updateConsumer({
     id: event.data.id,
     data: {
       [path]: event.newValue,
@@ -106,7 +104,7 @@ const deleteRowInfo = ref({
 })
 
 function agreeDeleting() {
-  store.dispatch(getFromConsumerModule(types.DELETE_CONSUMER_ACTION), {
+  consumersStore.deleteConsumer({
     id: deleteRowInfo.value.id,
   })
 
@@ -124,9 +122,7 @@ const isLoading = computed(
   () => rowData.value.length === 0 || dataByTransLocation.value.length === 0,
 )
 
-const dataByTransLocation = computed(
-  () => store.getters[getFromConsumerModule(types.TRANSACTION_LOCATION_STATE)],
-)
+const dataByTransLocation = computed(() => consumersStore.dataByTransLocation)
 
 provide('deleteRowInfo', deleteRowInfo)
 </script>
