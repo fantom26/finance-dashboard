@@ -24,8 +24,7 @@
     "maska": "^3.1.0",
     "pinia": "^3.0.4",
     "vue": "^3.5.33",
-    "vue-router": "^5.0.6",
-    "vuex": "^4.1.0"
+    "vue-router": "^5.0.6"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
