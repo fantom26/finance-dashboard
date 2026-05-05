@@ -925,24 +925,24 @@ acorn@^8.14.0, acorn@^8.9.0:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.14.0.tgz#063e2c70cac5fb4f6467f0b11152e04c682795b0"
   integrity sha512-cl669nCJTZBsL97OF4kUQm5g5hC2uihk0NxY3WENAC0TYdILVkAyHymAntgxGkl7K+t0cXIrH5siy5S4XkFycA==
 
-ag-charts-types@11.0.4:
-  version "11.0.4"
-  resolved "https://registry.yarnpkg.com/ag-charts-types/-/ag-charts-types-11.0.4.tgz#6118b44bad65673111210783ef0fa07114a233c5"
-  integrity sha512-K/Mi7FXvSCoABLSrqQ70k1QrIL5R6RNCt2NAppOxMEir+DVFPqKZtghruobc2MGVUUKkT9MCn6Dun+fL6yZjfA==
+ag-charts-types@13.2.1:
+  version "13.2.1"
+  resolved "https://registry.yarnpkg.com/ag-charts-types/-/ag-charts-types-13.2.1.tgz#2fcaff60dbf5e96fe2fcd6776a2c8b7a8666e712"
+  integrity sha512-r7veb3QqJtIKlXmeUsLR4/oDPwmHxFI2tmbZra/203mdaz3uwQUrrgYNg628nrK+7L2YxXnwGc6L05tWjLLjNQ==
 
-ag-grid-community@33.0.4, ag-grid-community@^33.0.4:
-  version "33.0.4"
-  resolved "https://registry.yarnpkg.com/ag-grid-community/-/ag-grid-community-33.0.4.tgz#9db28519b65e0da68edb170e13bba0c84204a7f4"
-  integrity sha512-iBD8g8bNIl95w9CzCQpDid+eTdmOoT39204sPUOhE9eE50vfoDHIaF5U4fRYQHbLsT4bwbXfQYdsqBAOLJL24w==
+ag-grid-community@35.2.1, ag-grid-community@^35.2.1:
+  version "35.2.1"
+  resolved "https://registry.yarnpkg.com/ag-grid-community/-/ag-grid-community-35.2.1.tgz#ee7fbc95b67d8c625af699822770e5cc9229a338"
+  integrity sha512-ycmGI+1EbUT7i3eg/Kgi1owwnkdHXRufo10Xm6cfSsVPM3TMpvlbLgi28KIPt9DGHZWHq9fOBn7nxMNdv1Yaow==
   dependencies:
-    ag-charts-types "11.0.4"
+    ag-charts-types "13.2.1"
 
-ag-grid-vue3@^33.0.4:
-  version "33.0.4"
-  resolved "https://registry.yarnpkg.com/ag-grid-vue3/-/ag-grid-vue3-33.0.4.tgz#f8d097edc1a8f2d971dfbdf6cf801edf14469e15"
-  integrity sha512-aqAd+xGMbi/nnWGhaclKBjHa1NbIpIqVdAUE+hHyGHGD2a6KK3zftPL2TokrBkWCEhKbseHz1blVNT1q67O3nQ==
+ag-grid-vue3@^35.2.1:
+  version "35.2.1"
+  resolved "https://registry.yarnpkg.com/ag-grid-vue3/-/ag-grid-vue3-35.2.1.tgz#98a9d1617f93604dd0bcdf19d5bf390049bcf62b"
+  integrity sha512-6QYw9QF9UKKiq+FKSehU33ABEtrNuKkqdrLO0SXtRD03u0ETlq/VYavfcB64hj9hvdjJJ9/PD0+vd0MyQWCtyA==
   dependencies:
-    ag-grid-community "33.0.4"
+    ag-grid-community "35.2.1"
 
 ajv@^6.12.4:
   version "6.12.6"
