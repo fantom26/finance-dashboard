@@ -1,26 +1,375 @@
+/**
+ * ISO-8601 timestamps with a `Z` UTC suffix, e.g. `2023-01-16T22:02:38Z`.
+ */
+export type Iso8601UtcTimestampString =
+  `${number}-${number}-${number}T${number}:${number}:${number}Z`
+
+export type UuidString = `${string}-${string}-${string}-${string}-${string}`
+
+export type Gender =
+  | 'Agender'
+  | 'Bigender'
+  | 'Female'
+  | 'Genderfluid'
+  | 'Genderqueer'
+  | 'Male'
+  | 'Non-binary'
+  | 'Polygender'
+
+export type EmploymentStatus = 'Employed' | 'Retired' | 'Self-Employed' | 'Student' | 'Unemployed'
+
+export type AccountType = 'Checking' | 'Credit Card' | 'Investment' | 'Loan' | 'Savings'
+
+export type AccountStatus = 'Active' | 'Closed' | 'Suspended'
+
+export type TransactionType = 'Deposit' | 'Payment' | 'Refund' | 'Transfer' | 'Withdrawal'
+
+export type TransactionMethod = 'ATM' | 'In-Person' | 'Mobile App' | 'Online' | 'Phone'
+
+export const CURRENCY_CODES = [
+  'AFN',
+  'ALL',
+  'AMD',
+  'ANG',
+  'AOA',
+  'ARS',
+  'AUD',
+  'AWG',
+  'AZN',
+  'BAM',
+  'BDT',
+  'BGN',
+  'BIF',
+  'BOB',
+  'BRL',
+  'BSD',
+  'BTN',
+  'BWP',
+  'BYR',
+  'CAD',
+  'CDF',
+  'CHF',
+  'CLP',
+  'CNY',
+  'COP',
+  'CRC',
+  'CUP',
+  'CVE',
+  'CZK',
+  'DJF',
+  'DKK',
+  'DOP',
+  'EGP',
+  'ETB',
+  'EUR',
+  'GBP',
+  'GEL',
+  'GHS',
+  'GMD',
+  'GNF',
+  'GTQ',
+  'GYD',
+  'HNL',
+  'HRK',
+  'HTG',
+  'HUF',
+  'IDR',
+  'ILS',
+  'IQD',
+  'IRR',
+  'ISK',
+  'JMD',
+  'JOD',
+  'JPY',
+  'KES',
+  'KGS',
+  'KHR',
+  'KMF',
+  'KPW',
+  'KRW',
+  'KWD',
+  'KZT',
+  'LAK',
+  'LBP',
+  'LKR',
+  'LSL',
+  'LTL',
+  'LYD',
+  'MAD',
+  'MDL',
+  'MGA',
+  'MKD',
+  'MMK',
+  'MNT',
+  'MRO',
+  'MUR',
+  'MVR',
+  'MWK',
+  'MXN',
+  'MYR',
+  'MZN',
+  'NAD',
+  'NGN',
+  'NIO',
+  'NOK',
+  'NPR',
+  'NZD',
+  'OMR',
+  'PAB',
+  'PEN',
+  'PGK',
+  'PHP',
+  'PKR',
+  'PLN',
+  'PYG',
+  'RSD',
+  'RUB',
+  'RWF',
+  'SAR',
+  'SBD',
+  'SDG',
+  'SEK',
+  'SHP',
+  'SLL',
+  'SOS',
+  'SRD',
+  'SSP',
+  'SYP',
+  'SZL',
+  'THB',
+  'TJS',
+  'TMT',
+  'TND',
+  'TOP',
+  'TTD',
+  'TWD',
+  'TZS',
+  'UAH',
+  'UGX',
+  'USD',
+  'UYU',
+  'UZS',
+  'VEF',
+  'VND',
+  'WST',
+  'XAF',
+  'XCD',
+  'XOF',
+  'XPF',
+  'YER',
+  'ZAR',
+  'ZMW',
+  'ZWL',
+] as const
+
+export type Currency = (typeof CURRENCY_CODES)[number]
+
+export const COUNTRY_CODES = [
+  'AD',
+  'AE',
+  'AF',
+  'AG',
+  'AI',
+  'AL',
+  'AM',
+  'AO',
+  'AR',
+  'AT',
+  'AU',
+  'AZ',
+  'BA',
+  'BD',
+  'BE',
+  'BF',
+  'BG',
+  'BH',
+  'BI',
+  'BJ',
+  'BN',
+  'BO',
+  'BR',
+  'BS',
+  'BT',
+  'BW',
+  'BY',
+  'CA',
+  'CD',
+  'CF',
+  'CG',
+  'CH',
+  'CI',
+  'CL',
+  'CM',
+  'CN',
+  'CO',
+  'CR',
+  'CU',
+  'CV',
+  'CY',
+  'CZ',
+  'DE',
+  'DJ',
+  'DK',
+  'DO',
+  'EC',
+  'EE',
+  'EG',
+  'ES',
+  'ET',
+  'FI',
+  'FM',
+  'FR',
+  'GA',
+  'GB',
+  'GD',
+  'GE',
+  'GL',
+  'GM',
+  'GP',
+  'GR',
+  'GT',
+  'GY',
+  'HK',
+  'HN',
+  'HR',
+  'HT',
+  'HU',
+  'ID',
+  'IE',
+  'IL',
+  'IM',
+  'IN',
+  'IQ',
+  'IR',
+  'IS',
+  'IT',
+  'JM',
+  'JO',
+  'JP',
+  'KE',
+  'KG',
+  'KH',
+  'KI',
+  'KM',
+  'KP',
+  'KR',
+  'KZ',
+  'LA',
+  'LB',
+  'LI',
+  'LK',
+  'LR',
+  'LS',
+  'LT',
+  'LU',
+  'LV',
+  'LY',
+  'MA',
+  'MD',
+  'ME',
+  'MG',
+  'MH',
+  'MK',
+  'ML',
+  'MM',
+  'MN',
+  'MR',
+  'MT',
+  'MU',
+  'MW',
+  'MX',
+  'MY',
+  'MZ',
+  'NA',
+  'NC',
+  'NE',
+  'NG',
+  'NI',
+  'NL',
+  'NO',
+  'NP',
+  'NZ',
+  'PA',
+  'PE',
+  'PG',
+  'PH',
+  'PK',
+  'PL',
+  'PR',
+  'PS',
+  'PT',
+  'PW',
+  'PY',
+  'QA',
+  'RS',
+  'RU',
+  'RW',
+  'SA',
+  'SB',
+  'SC',
+  'SD',
+  'SE',
+  'SI',
+  'SL',
+  'SN',
+  'SO',
+  'SR',
+  'SS',
+  'SV',
+  'SY',
+  'SZ',
+  'TD',
+  'TG',
+  'TH',
+  'TJ',
+  'TL',
+  'TM',
+  'TN',
+  'TT',
+  'TW',
+  'TZ',
+  'UA',
+  'UG',
+  'US',
+  'UY',
+  'UZ',
+  'VC',
+  'VE',
+  'VN',
+  'WS',
+  'XK',
+  'YE',
+  'YT',
+  'ZA',
+  'ZM',
+  'ZW',
+] as const
+
+export type CountryCode = (typeof COUNTRY_CODES)[number]
+
 export interface Consumer {
-  id: string | number
+  id: UuidString
   full_name: string
   date_of_birth: string
-  gender: string
+  gender: Gender
   email: string
   phone_number: string
-  country_code?: string
+  country_code: CountryCode
   address: string
   city: string
   country: string
-  employment_status: string
-  account_id: string
-  account_type: string
+  employment_status: EmploymentStatus
+  account_id: UuidString
+  account_type: AccountType
   account_balance: number
-  currency: string
+  currency: Currency
   account_open_date: string
-  account_status: string
-  transaction_id: string
-  transaction_date: string
-  transaction_type: string
+  account_status: AccountStatus
+  transaction_id: UuidString
+  transaction_date: Iso8601UtcTimestampString
+  transaction_type: TransactionType
   transaction_amount: number
   balance_after_transaction: number
-  transaction_method: string
+  transaction_method: TransactionMethod
   transaction_location: string
 }
