@@ -1,4 +1,5 @@
-# Install deps with Yarn, run lint/format check and production build on Node 20 and 22 (LTS-minded matrix).
+# Install deps with Yarn, run lint/format check and production build on Node 22.x.
+# json-server@1 requires Node >=22.12 — keep CI on that baseline.
 # See: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
 name: Node.js CI
@@ -15,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [20.x, 22.x]
+        node-version: [22.x]
 
     steps:
       - uses: actions/checkout@v6

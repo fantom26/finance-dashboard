@@ -27,6 +27,9 @@
     "vue": "^3.5.33",
     "vue-router": "^5.0.6"
   },
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@types/node": "^22.15.21",
@@ -47,6 +50,7 @@
   },
   "lint-staged": {
     "src/**/*.{js,ts,vue,html,css}": "prettier --write",
-    "src/**/*.{js,ts,vue}": "eslint --fix"
+    "src/**/*.{js,ts,vue}": "eslint --fix",
+    "src/**/*.{ts,vue}": "yarn typecheck"
   }
 }
