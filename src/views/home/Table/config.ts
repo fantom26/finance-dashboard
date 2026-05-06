@@ -1,11 +1,17 @@
 import { themeBalham } from 'ag-grid-community'
+import type {
+  ICellRendererParams,
+  PaginationNumberFormatterParams,
+  ValueGetterParams,
+  ValueParserParams,
+} from 'ag-grid-community'
 import {
   currencyFormatter,
   dateFormatter,
   emptyCellFormatter,
   formatPhoneNumber,
-} from '@/utils/helpers.js'
-import USER_FIELDS from '@/entities/user.js'
+} from '@/utils/helpers'
+import USER_FIELDS from '@/entities/user'
 import DeleteButtonComponent from '@/views/home/Table/DeleteButtonComponent.vue'
 
 const editMoneyCellConfig = {
@@ -14,7 +20,7 @@ const editMoneyCellConfig = {
   cellEditorParams: {
     minLength: 1,
   },
-  valueParser: (params) => Number(params.newValue),
+  valueParser: (params: ValueParserParams) => Number(params.newValue),
 }
 
 export default {
@@ -33,7 +39,7 @@ export default {
           pinned: 'left',
           filter: false,
           width: 70,
-          valueGetter: (params) => params.node.rowIndex + 1,
+          valueGetter: (params: ValueGetterParams) => params.node!.rowIndex! + 1,
         },
         {
           headerName: 'Customer ID',
@@ -186,7 +192,7 @@ export default {
       sortable: false,
       resizable: false,
       width: 100,
-      cellRendererSelector: (params) => {
+      cellRendererSelector: (params: ICellRendererParams) => {
         if (params.node.rowPinned === 'bottom') {
           return undefined
         }
@@ -202,7 +208,7 @@ export default {
   pagination: true,
   paginationPageSize: 500,
   paginationPageSizeSelector: Array.from({ length: 5 }, (_, i) => (i + 1) * 100),
-  paginationNumberFormatter: (params) => {
+  paginationNumberFormatter: (params: PaginationNumberFormatterParams) => {
     return '[' + params.value.toLocaleString() + ']'
   },
 }

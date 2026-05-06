@@ -1,15 +1,12 @@
 import { defineStore } from 'pinia'
-import { ConsumersService } from '@/api/consumers.js'
-import {
-  countConsumerByTransactionInfo,
-  countEntityByProperty,
-  formatData,
-} from '@/utils/helpers.js'
-import USER_FIELDS from '@/entities/user.js'
+import { ConsumersService } from '@/api/consumers'
+import { countConsumerByTransactionInfo, countEntityByProperty, formatData } from '@/utils/helpers'
+import USER_FIELDS from '@/entities/user'
+import type { Consumer } from '@/types/consumer'
 
 export const useConsumersStore = defineStore('consumers', {
   state: () => ({
-    consumers: [],
+    consumers: [] as Consumer[],
   }),
   getters: {
     hasConsumers: (state) => state.consumers.length > 0,
@@ -40,7 +37,7 @@ export const useConsumersStore = defineStore('consumers', {
       this.consumers = response.data
     },
 
-    async updateConsumerInfo(payload) {
+    async updateConsumerInfo(payload: { id: Consumer['id']; data: Partial<Consumer> }) {
       const response = await ConsumersService.updateConsumer(payload)
 
       if (response.status === 200) {
@@ -53,7 +50,7 @@ export const useConsumersStore = defineStore('consumers', {
       }
     },
 
-    async deleteConsumer(payload) {
+    async deleteConsumer(payload: { id: Consumer['id'] }) {
       const response = await ConsumersService.deleteConsumer(payload)
 
       if (response.status === 200) {

@@ -30,4 +30,5 @@ jobs:
           HUSKY: '0'
       - run: yarn lint
       - run: yarn format:check
+      - run: yarn typecheck
       - run: yarn build

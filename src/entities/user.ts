@@ -1,4 +1,4 @@
-export default {
+const USER_FIELDS = {
   CUSTOMER_ID: 'id',
   FULL_NAME: 'full_name',
   BIRTHDAY: 'date_of_birth',
@@ -23,4 +23,6 @@ export default {
   BALANCE_AFTER_TRANSACTION: 'balance_after_transaction',
   TRANSACTION_METHOD: 'transaction_method',
   TRANSACTION_LOCATION: 'transaction_location',
-}
+} as const
+
+export default USER_FIELDS

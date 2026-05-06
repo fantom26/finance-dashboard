@@ -14,7 +14,7 @@
 <script setup>
 import TheHeader from '@/components/layout/TheHeader.vue'
 import { onMounted } from 'vue'
-import { useConsumersStore } from '@/stores/consumers.js'
+import { useConsumersStore } from '@/stores/consumers'
 
 const consumersStore = useConsumersStore()
 

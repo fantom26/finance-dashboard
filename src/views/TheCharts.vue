@@ -22,7 +22,7 @@ import PieChart from '@/components/charts/PieChart.vue'
 import MapChart from '@/components/charts/MapChart.vue'
 import XYChart from '@/components/charts/XYChart.vue'
 import DonutChart from '@/components/charts/DonutChart.vue'
-import { useConsumersStore } from '@/stores/consumers.js'
+import { useConsumersStore } from '@/stores/consumers'
 
 const consumersStore = useConsumersStore()
 const hasConsumers = computed(() => consumersStore.hasConsumers)

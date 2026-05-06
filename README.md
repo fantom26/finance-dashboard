@@ -36,7 +36,7 @@ yarn install
 cp .env.example .env
 ```
 
-[`src/api/consumers.js`](src/api/consumers.js) reads `import.meta.env.VITE_API_URL` as the axios base URL (see [`.env.example`](.env.example)).
+[`src/api/consumers.ts`](src/api/consumers.ts) reads `import.meta.env.VITE_API_URL` as the axios base URL (see [`.env.example`](.env.example)).
 
 ### Run
 
@@ -57,6 +57,7 @@ Open the URL printed by Vite (often `http://localhost:5173`).
 ### Production build
 
 ```bash
+yarn typecheck
 yarn build
 yarn preview
 ```
@@ -66,6 +67,7 @@ yarn preview
 ```bash
 yarn lint
 yarn lint:fix
+yarn typecheck
 yarn format:check
 yarn format
 ```

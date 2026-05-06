@@ -3,8 +3,8 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import pinia from './stores'
 import router from './router'
-import globalComponents from '@/plugins/global-components.js'
-import vMaska from '@/plugins/v-maska.js'
+import globalComponents from '@/plugins/global-components'
+import vMaska from '@/plugins/v-maska'
 
 const app = createApp(App)
 

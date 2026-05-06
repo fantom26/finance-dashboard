@@ -41,9 +41,9 @@ import {
 } from 'ag-grid-community'
 import PieChart from '@/components/charts/PieChart.vue'
 import DeleteRecordDialog from '@/views/home/Table/DeleteRecordDialog.vue'
-import USER_FIELDS from '@/entities/user.js'
-import gridOptions from '@/views/home/Table/config.js'
-import { useConsumersStore } from '@/stores/consumers.js'
+import USER_FIELDS from '@/entities/user'
+import gridOptions from '@/views/home/Table/config'
+import { useConsumersStore } from '@/stores/consumers'
 
 ModuleRegistry.registerModules([
   ColumnHoverModule,
