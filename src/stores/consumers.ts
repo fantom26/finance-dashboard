@@ -4,9 +4,13 @@ import { countConsumerByTransactionInfo, countEntityByProperty, formatData } fro
 import USER_FIELDS from '@/entities/user'
 import type { Consumer } from '@/types/consumer'
 
+interface State {
+  consumers: Consumer[]
+}
+
 export const useConsumersStore = defineStore('consumers', {
-  state: () => ({
-    consumers: [] as Consumer[],
+  state: (): State => ({
+    consumers: [],
   }),
   getters: {
     hasConsumers: (state) => state.consumers.length > 0,
