@@ -1,3 +1,5 @@
+<!-- eslint-disable vue/multi-word-component-names -- TODO(file-based routes): reconcile with vue/multi-word-component-names; remove this when decided. -->
+
 <template>
   <base-container>
     <div v-if="isLoading">Loading...</div>
@@ -40,9 +42,9 @@ import {
   ClientSideRowModelModule,
 } from 'ag-grid-community'
 import PieChart from '@/components/charts/PieChart.vue'
-import DeleteRecordDialog from '@/views/home/Table/DeleteRecordDialog.vue'
+import DeleteRecordDialog from '@/features/table/DeleteRecordDialog.vue'
 import USER_FIELDS from '@/entities/user'
-import gridOptions from '@/views/home/Table/config'
+import gridOptions from '@/features/table/config'
 import { useConsumersStore } from '@/stores/consumers'
 
 ModuleRegistry.registerModules([

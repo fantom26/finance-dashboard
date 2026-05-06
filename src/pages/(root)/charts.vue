@@ -1,3 +1,5 @@
+<!-- eslint-disable vue/multi-word-component-names -- TODO(file-based routes): reconcile with vue/multi-word-component-names; remove this when decided. -->
+
 <template>
   <div>
     <base-container>

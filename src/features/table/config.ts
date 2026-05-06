@@ -12,7 +12,7 @@ import {
   formatPhoneNumber,
 } from '@/utils/helpers'
 import USER_FIELDS from '@/entities/user'
-import DeleteButtonComponent from '@/views/home/Table/DeleteButtonComponent.vue'
+import DeleteButtonComponent from '@/features/table/DeleteButtonComponent.vue'
 
 const editMoneyCellConfig = {
   editable: true,
