@@ -23,7 +23,7 @@ onMounted(() => {
 })
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .route-enter-from {
   opacity: 0;
   transform: translateY(-3rem);

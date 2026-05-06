@@ -25,29 +25,27 @@
 import routes from '@/router/routes.js'
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .header {
   padding-block: 1.6rem;
   height: var(--header-height);
+}
 
-  &__wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.header__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  &__nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.6rem;
+.header__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+}
 
-    &-link {
-      &--active {
-        font-weight: bold;
-        text-decoration: underline;
-      }
-    }
-  }
+.header__nav-link--active {
+  font-weight: bold;
+  text-decoration: underline;
 }
 </style>

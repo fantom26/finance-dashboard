@@ -127,16 +127,16 @@ const dataByTransLocation = computed(() => consumersStore.dataByTransLocation)
 provide('deleteRowInfo', deleteRowInfo)
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .table-page {
   height: calc(100vh - var(--header-height));
   display: flex;
   align-items: center;
   gap: 1.6rem;
+}
 
-  &__chart {
-    flex: 0 0 23%;
-    height: 500px;
-  }
+.table-page__chart {
+  flex: 0 0 23%;
+  height: 500px;
 }
 </style>

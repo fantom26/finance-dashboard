@@ -1,4 +1,4 @@
-import '@/styles/settings/index.scss'
+import '@/styles/settings/index.css'
 import { createApp } from 'vue'
 import App from './App.vue'
 import pinia from './stores'

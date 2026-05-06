@@ -25,3 +25,9 @@ const { show } = toRefs(props)
 
 const emit = defineEmits(['agree', 'close'])
 </script>
+
+<style scoped>
+.dialog-title {
+  text-align: center;
+}
+</style>

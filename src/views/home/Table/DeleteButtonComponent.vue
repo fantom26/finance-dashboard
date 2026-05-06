@@ -15,9 +15,3 @@ function showDialog() {
   deleteRowInfo.value.id = params.data.id
 }
 </script>
-
-<style lang="scss">
-.dialog-title {
-  text-align: center;
-}
-</style>

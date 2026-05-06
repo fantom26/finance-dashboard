@@ -56,17 +56,17 @@ const charts = shallowRef([
 ])
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .charts-grid {
   height: calc(100vh - var(--header-height));
   padding-block: 1rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
+}
 
-  &__item {
-    border: 0.1rem solid black;
-    border-radius: 1rem;
-  }
+.charts-grid__item {
+  border: 0.1rem solid black;
+  border-radius: 1rem;
 }
 </style>
