@@ -1,5 +1,5 @@
 <template>
-  <div ref="chartRef" style="width: 100%; height: 100%"></div>
+  <ChartBase ref="chartBase" />
 </template>
 
 <script setup lang="ts">
@@ -7,6 +7,7 @@ import { onMounted, toRefs, ref } from 'vue'
 import * as am5 from '@amcharts/amcharts5'
 import * as am5percent from '@amcharts/amcharts5/percent'
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated'
+import ChartBase from './ChartBase.vue'
 
 const props = defineProps({
   data: {
@@ -17,11 +18,12 @@ const props = defineProps({
 
 const { data } = toRefs(props)
 
-const chartRef = ref<HTMLElement | null>(null)
+const chartBase = ref<InstanceType<typeof ChartBase> | null>(null)
 
 onMounted(() => {
-  if (!chartRef.value) return
-  const root = am5.Root.new(chartRef.value)
+  const el = chartBase.value?.chartRef
+  if (!el) return
+  const root = am5.Root.new(el)
 
   root.setThemes([am5themes_Animated.new(root)])
 
