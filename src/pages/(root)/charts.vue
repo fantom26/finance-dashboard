@@ -19,19 +19,17 @@
 </template>
 
 <script setup lang="ts">
-import { computed, shallowRef, toValue } from 'vue'
+import { shallowRef, toValue } from 'vue'
 import PieChart from '@/components/charts/PieChart.vue'
 import MapChart from '@/components/charts/MapChart.vue'
 import XYChart from '@/components/charts/XYChart.vue'
 import DonutChart from '@/components/charts/DonutChart.vue'
 import { useConsumersStore } from '@/stores/consumers'
+import { storeToRefs } from 'pinia'
 
 const consumersStore = useConsumersStore()
-const hasConsumers = computed(() => consumersStore.hasConsumers)
-const consumers = computed(() => consumersStore.consumers)
-const dataByTransTypeDistribution = computed(() => consumersStore.dataByTransTypeDistribution)
-const dataByGender = computed(() => consumersStore.dataByGender)
-const dataByTransLocation = computed(() => consumersStore.dataByTransLocation)
+const { hasConsumers, consumers, dataByTransTypeDistribution, dataByGender, dataByTransLocation } =
+  storeToRefs(consumersStore)
 
 const charts = shallowRef([
   {
