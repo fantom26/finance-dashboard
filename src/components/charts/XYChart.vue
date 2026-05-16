@@ -5,9 +5,9 @@
 <script setup lang="ts">
 import * as am5 from '@amcharts/amcharts5'
 import * as am5xy from '@amcharts/amcharts5/xy'
-import { onMounted, toRefs, ref } from 'vue'
-import am5themes_Animated from '@amcharts/amcharts5/themes/Animated'
+import { toRefs, ref } from 'vue'
 import ChartBase from './ChartBase.vue'
+import { useAmChart } from '@/composables/useAmChart'
 
 const props = defineProps({
   data: {
@@ -24,27 +24,21 @@ const { data, name } = toRefs(props)
 
 const chartBase = ref<InstanceType<typeof ChartBase> | null>(null)
 
-onMounted(() => {
-  const el = chartBase.value?.chartRef
-  if (!el) return
-  const root = am5.Root.new(el)
-
-  root.setThemes([am5themes_Animated.new(root)])
-
-  let chart = root.container.children.push(
+useAmChart(chartBase, (root) => {
+  const chart = root.container.children.push(
     am5xy.XYChart.new(root, {
       panY: false,
       layout: root.verticalLayout,
     }),
   )
 
-  let yAxis = chart.yAxes.push(
+  const yAxis = chart.yAxes.push(
     am5xy.ValueAxis.new(root, {
       renderer: am5xy.AxisRendererY.new(root, {}),
     }),
   )
 
-  let xAxis = chart.xAxes.push(
+  const xAxis = chart.xAxes.push(
     am5xy.CategoryAxis.new(root, {
       renderer: am5xy.AxisRendererX.new(root, {}),
       categoryField: 'category',
@@ -52,7 +46,7 @@ onMounted(() => {
   )
   xAxis.data.setAll(data.value)
 
-  let series = chart.series.push(
+  const series = chart.series.push(
     am5xy.ColumnSeries.new(root, {
       name: name.value,
       xAxis: xAxis,
@@ -63,11 +57,9 @@ onMounted(() => {
   )
   series.data.setAll(data.value)
 
-  let legend = chart.children.push(am5.Legend.new(root, {}))
+  const legend = chart.children.push(am5.Legend.new(root, {}))
   legend.data.setAll(chart.series.values)
 
   chart.set('cursor', am5xy.XYCursor.new(root, {}))
-
-  return () => root.dispose()
 })
 </script>

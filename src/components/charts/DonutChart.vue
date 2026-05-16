@@ -3,11 +3,11 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, toRefs, ref } from 'vue'
+import { toRefs, ref } from 'vue'
 import * as am5 from '@amcharts/amcharts5'
 import * as am5percent from '@amcharts/amcharts5/percent'
-import am5themes_Animated from '@amcharts/amcharts5/themes/Animated'
 import ChartBase from './ChartBase.vue'
+import { useAmChart } from '@/composables/useAmChart'
 
 const props = defineProps({
   data: {
@@ -20,13 +20,7 @@ const { data } = toRefs(props)
 
 const chartBase = ref<InstanceType<typeof ChartBase> | null>(null)
 
-onMounted(() => {
-  const el = chartBase.value?.chartRef
-  if (!el) return
-  const root = am5.Root.new(el)
-
-  root.setThemes([am5themes_Animated.new(root)])
-
+useAmChart(chartBase, (root) => {
   const chart = root.container.children.push(
     am5percent.PieChart.new(root, {
       radius: am5.percent(50),
@@ -42,7 +36,5 @@ onMounted(() => {
   )
 
   series.data.setAll(data.value)
-
-  return () => root.dispose()
 })
 </script>

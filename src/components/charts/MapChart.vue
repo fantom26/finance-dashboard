@@ -3,12 +3,12 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, toRefs, ref } from 'vue'
+import { toRefs, ref } from 'vue'
 import * as am5 from '@amcharts/amcharts5'
 import * as am5map from '@amcharts/amcharts5/map'
-import am5themes_Animated from '@amcharts/amcharts5/themes/Animated'
 import am5geodata_worldLow from '@amcharts/amcharts5-geodata/worldLow'
 import ChartBase from './ChartBase.vue'
+import { useAmChart } from '@/composables/useAmChart'
 
 const props = defineProps({
   data: {
@@ -21,12 +21,8 @@ const { data } = toRefs(props)
 
 const chartBase = ref<InstanceType<typeof ChartBase> | null>(null)
 
-onMounted(() => {
-  const el = chartBase.value?.chartRef
-  if (!el) return
-  const root = am5.Root.new(el)
-
-  root.setThemes([am5themes_Animated.new(root)])
+useAmChart(chartBase, (root) => {
+  if (!Array.isArray(data.value)) return
 
   const chart = root.container.children.push(
     am5map.MapChart.new(root, {
@@ -52,6 +48,7 @@ onMounted(() => {
     name: country.properties.name,
     value: countryCounts[country.id] ?? 0,
   }))
+
   polygonSeries.set('heatRules', [
     {
       target: polygonSeries.mapPolygons.template,
