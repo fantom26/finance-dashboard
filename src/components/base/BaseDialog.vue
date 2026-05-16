@@ -20,16 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { toRefs } from 'vue'
-
-const props = defineProps({
-  show: {
-    type: Boolean,
-    required: true,
-  },
-})
-
-const { show } = toRefs(props)
+defineProps<{ show: boolean }>()
 
 const emit = defineEmits(['close'])
 
