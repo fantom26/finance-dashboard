@@ -4,13 +4,17 @@
   <div>
     <base-container>
       <div class="charts-grid" v-if="hasConsumers">
-        <div class="charts-grid__item" v-for="chart in charts" :key="chart.id">
-          <component
-            :is="chart.component"
-            :id="chart.id"
-            :data="toValue(chart.data)"
-            :name="chart.name"
-          />
+        <div class="charts-grid__item">
+          <pie-chart id="transaction-type" :data="dataByTransTypeDistribution" />
+        </div>
+        <div class="charts-grid__item">
+          <map-chart id="consumers-by-countries" :data="consumers" />
+        </div>
+        <div class="charts-grid__item">
+          <XYChart id="amount-by-cities" name="Cities" :data="dataByTransLocation" />
+        </div>
+        <div class="charts-grid__item">
+          <donut-chart id="gender-chart" :data="dataByGender" />
         </div>
       </div>
       <p v-else>Loading...</p>
@@ -19,7 +23,6 @@
 </template>
 
 <script setup lang="ts">
-import { shallowRef, toValue } from 'vue'
 import PieChart from '@/components/charts/PieChart.vue'
 import MapChart from '@/components/charts/MapChart.vue'
 import XYChart from '@/components/charts/XYChart.vue'
@@ -30,30 +33,6 @@ import { storeToRefs } from 'pinia'
 const consumersStore = useConsumersStore()
 const { hasConsumers, consumers, dataByTransTypeDistribution, dataByGender, dataByTransLocation } =
   storeToRefs(consumersStore)
-
-const charts = shallowRef([
-  {
-    id: 'transaction-type',
-    data: dataByTransTypeDistribution,
-    component: PieChart,
-  },
-  {
-    id: 'consumers-by-countries',
-    data: consumers,
-    component: MapChart,
-  },
-  {
-    id: 'amount-by-cities',
-    data: dataByTransLocation,
-    name: 'Cities',
-    component: XYChart,
-  },
-  {
-    id: 'gender-chart',
-    data: dataByGender,
-    component: DonutChart,
-  },
-])
 </script>
 
 <style scoped>
