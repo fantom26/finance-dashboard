@@ -1,25 +1,23 @@
 <template>
-  <div :id="id" style="width: 100%; height: 100%"></div>
+  <div ref="chartRef" style="width: 100%; height: 100%"></div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, toRefs, watch, shallowRef } from 'vue'
+import { onMounted, toRefs, watch, shallowRef, ref } from 'vue'
 import * as am5 from '@amcharts/amcharts5'
 import * as am5percent from '@amcharts/amcharts5/percent'
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated'
 
 const props = defineProps({
-  id: {
-    type: String,
-    required: true,
-  },
   data: {
     type: Array,
     required: true,
   },
 })
 
-const { data, id } = toRefs(props)
+const { data } = toRefs(props)
+
+const chartRef = ref<HTMLElement | null>(null)
 
 const root = shallowRef(null)
 const series = shallowRef(null)
@@ -36,7 +34,9 @@ watch(data, (newData) => {
 })
 
 onMounted(() => {
-  root.value = am5.Root.new(id.value)
+  if (!chartRef.value) return
+
+  root.value = am5.Root.new(chartRef.value)
   root.value.setThemes([am5themes_Animated.new(root.value)])
 
   const chart = root.value.container.children.push(

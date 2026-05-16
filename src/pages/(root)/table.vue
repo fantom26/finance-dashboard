@@ -13,7 +13,7 @@
         @cell-edit-request="onCellEditRequest"
       />
       <div class="table-page__chart">
-        <pie-chart id="transaction-location" :data="dataByTransLocation" />
+        <pie-chart :data="dataByTransLocation" />
       </div>
       <delete-record-dialog
         :show="deleteRowInfo.show"

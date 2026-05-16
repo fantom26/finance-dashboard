@@ -1,18 +1,14 @@
 <template>
-  <div :id="id" style="width: 100%; height: 100%"></div>
+  <div ref="chartRef" style="width: 100%; height: 100%"></div>
 </template>
 
 <script setup lang="ts">
 import * as am5 from '@amcharts/amcharts5'
 import * as am5xy from '@amcharts/amcharts5/xy'
-import { onMounted, toRefs } from 'vue'
+import { onMounted, toRefs, ref } from 'vue'
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated'
 
 const props = defineProps({
-  id: {
-    type: String,
-    required: true,
-  },
   data: {
     type: Array,
     required: true,
@@ -23,10 +19,13 @@ const props = defineProps({
   },
 })
 
-const { data, id, name } = toRefs(props)
+const { data, name } = toRefs(props)
+
+const chartRef = ref<HTMLElement | null>(null)
 
 onMounted(() => {
-  const root = am5.Root.new(id.value)
+  if (!chartRef.value) return
+  const root = am5.Root.new(chartRef.value)
 
   root.setThemes([am5themes_Animated.new(root)])
 

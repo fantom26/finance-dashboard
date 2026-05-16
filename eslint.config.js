@@ -1,10 +1,12 @@
+import globals from 'globals'
 import eslint from '@eslint/js'
 import importPlugin from 'eslint-plugin-import'
 import pluginVue from 'eslint-plugin-vue'
 import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
 import tseslint from 'typescript-eslint'
+import { defineConfig } from "eslint/config";
 
-export default tseslint.config(
+export default defineConfig(
   {
     name: 'app/files-to-lint',
     files: ['**/*.{js,mjs,cjs,ts,mts,vue}'],
@@ -28,6 +30,7 @@ export default tseslint.config(
     files: ['**/*.vue'],
     languageOptions: {
       globals: {
+				...globals.browser,
         definePage: 'readonly',
       },
       parserOptions: {

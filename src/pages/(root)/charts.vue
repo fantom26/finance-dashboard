@@ -5,16 +5,16 @@
     <base-container>
       <div class="charts-grid" v-if="hasConsumers">
         <div class="charts-grid__item">
-          <pie-chart id="transaction-type" :data="dataByTransTypeDistribution" />
+          <pie-chart :data="dataByTransTypeDistribution" />
         </div>
         <div class="charts-grid__item">
-          <map-chart id="consumers-by-countries" :data="consumers" />
+          <map-chart :data="consumers" />
         </div>
         <div class="charts-grid__item">
-          <XYChart id="amount-by-cities" name="Cities" :data="dataByTransLocation" />
+          <XYChart name="Cities" :data="dataByTransLocation" />
         </div>
         <div class="charts-grid__item">
-          <donut-chart id="gender-chart" :data="dataByGender" />
+          <donut-chart :data="dataByGender" />
         </div>
       </div>
       <p v-else>Loading...</p>
