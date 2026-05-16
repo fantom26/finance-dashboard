@@ -5,7 +5,7 @@
     <div v-if="isLoading">Loading...</div>
     <div class="table-page" v-else>
       <ag-grid-vue
-        :rowData="rowData"
+        :rowData="consumers"
         :gridOptions="gridOptions"
         style="width: 100%; height: 100%; flex: 0 0 76%"
         :pinnedBottomRowData="consumerTotal"
@@ -51,6 +51,7 @@ import { useConsumersStore } from '@/stores/consumers'
 import type { Consumer } from '@/types/consumer'
 import { useConsumerTotals } from '@/composables/useConsumerTotals'
 import { useDeleteTableRow } from '@/composables/useDeleteTableRow'
+import { storeToRefs } from 'pinia'
 
 ModuleRegistry.registerModules([
   ColumnHoverModule,
@@ -67,8 +68,11 @@ ModuleRegistry.registerModules([
 ])
 
 const consumersStore = useConsumersStore()
-const rowData = computed(() => consumersStore.consumers)
-const consumerTotal = useConsumerTotals(rowData)
+const { deleteRowInfo, agreeDeleting, closeDialog } = useDeleteTableRow({
+  deleteRow: consumersStore.deleteConsumer,
+})
+const { consumers, dataByTransLocation } = storeToRefs(consumersStore)
+const consumerTotal = useConsumerTotals(consumers)
 
 const gridApi = shallowRef<GridApi<Consumer> | null>(null)
 
@@ -88,14 +92,8 @@ function onCellEditRequest(event: CellEditRequestEvent<Consumer>) {
 }
 
 const isLoading = computed(
-  () => rowData.value.length === 0 || dataByTransLocation.value.length === 0,
+  () => consumers.value.length === 0 || dataByTransLocation.value.length === 0,
 )
-
-const dataByTransLocation = computed(() => consumersStore.dataByTransLocation)
-
-const { deleteRowInfo, agreeDeleting, closeDialog } = useDeleteTableRow({
-  deleteRow: consumersStore.deleteConsumer,
-})
 </script>
 
 <style scoped>
