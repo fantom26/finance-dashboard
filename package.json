@@ -49,8 +49,13 @@
     "vue-tsc": "3.2.9"
   },
   "lint-staged": {
-    "src/**/*.{js,ts,vue,html,css}": "prettier --write",
-    "src/**/*.{js,ts,vue}": "eslint --fix",
+    "*.{vue,ts,js}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{css,scss}": [
+      "prettier --write"
+    ],
     "src/**/*.{ts,vue}": "yarn typecheck"
   }
 }
