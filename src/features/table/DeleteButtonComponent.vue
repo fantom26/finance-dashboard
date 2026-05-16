@@ -6,11 +6,14 @@
 
 <script setup lang="ts">
 import { inject } from 'vue'
+import { DeleteRowInfoKey } from '@/composables/useDeleteTableRow'
 
-const deleteRowInfo = inject('deleteRowInfo')
+const deleteRowInfo = inject(DeleteRowInfoKey)
 const { params } = defineProps(['params'])
 
 function showDialog() {
+  if (!deleteRowInfo) return
+
   deleteRowInfo.value.show = true
   deleteRowInfo.value.id = params.data.id
 }

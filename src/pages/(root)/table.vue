@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, provide, ref, shallowRef } from 'vue'
+import { computed, shallowRef } from 'vue'
 import { AgGridVue } from 'ag-grid-vue3'
 import {
   ModuleRegistry,
@@ -48,8 +48,9 @@ import PieChart from '@/components/charts/PieChart.vue'
 import DeleteRecordDialog from '@/features/table/DeleteRecordDialog.vue'
 import gridOptions from '@/features/table/config'
 import { useConsumersStore } from '@/stores/consumers'
-import type { Consumer, UuidString } from '@/types/consumer'
+import type { Consumer } from '@/types/consumer'
 import { useConsumerTotals } from '@/composables/useConsumerTotals'
+import { useDeleteTableRow } from '@/composables/useDeleteTableRow'
 
 ModuleRegistry.registerModules([
   ColumnHoverModule,
@@ -86,35 +87,15 @@ function onCellEditRequest(event: CellEditRequestEvent<Consumer>) {
   })
 }
 
-const deleteRowInfo = ref<{ show: boolean; id: UuidString | null }>({
-  show: false,
-  id: null,
-})
-
-function agreeDeleting() {
-  if (deleteRowInfo.value.id) {
-    consumersStore.deleteConsumer({
-      id: deleteRowInfo.value.id,
-    })
-  }
-
-  closeDialog()
-}
-
-function closeDialog() {
-  deleteRowInfo.value = {
-    show: false,
-    id: null,
-  }
-}
-
 const isLoading = computed(
   () => rowData.value.length === 0 || dataByTransLocation.value.length === 0,
 )
 
 const dataByTransLocation = computed(() => consumersStore.dataByTransLocation)
 
-provide('deleteRowInfo', deleteRowInfo)
+const { deleteRowInfo, agreeDeleting, closeDialog } = useDeleteTableRow({
+  deleteRow: consumersStore.deleteConsumer,
+})
 </script>
 
 <style scoped>
