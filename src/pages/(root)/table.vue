@@ -24,7 +24,7 @@
   </base-container>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed, provide, ref, shallowRef } from 'vue'
 import { AgGridVue } from 'ag-grid-vue3'
 import {

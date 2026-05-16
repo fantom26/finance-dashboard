@@ -18,7 +18,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed, shallowRef, toValue } from 'vue'
 import PieChart from '@/components/charts/PieChart.vue'
 import MapChart from '@/components/charts/MapChart.vue'

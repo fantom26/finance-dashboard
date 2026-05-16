@@ -47,15 +47,5 @@
     "vite": "^8.0.0",
     "vue-eslint-parser": "^10.3.0",
     "vue-tsc": "3.2.9"
-  },
-  "lint-staged": {
-    "*.{vue,ts,js}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{css,scss}": [
-      "prettier --write"
-    ],
-    "src/**/*.{ts,vue}": "yarn typecheck"
   }
 }

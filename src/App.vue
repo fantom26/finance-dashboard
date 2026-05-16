@@ -11,7 +11,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import TheHeader from '@/components/layout/TheHeader.vue'
 import { onMounted } from 'vue'
 import { useConsumersStore } from '@/stores/consumers'

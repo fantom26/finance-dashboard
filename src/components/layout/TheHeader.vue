@@ -21,7 +21,7 @@
   </header>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import routes from '@/router/routes'
 </script>
 
