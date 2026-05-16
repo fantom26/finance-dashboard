@@ -37,14 +37,12 @@ onMounted(() => {
     }),
   )
 
-  // Create Y-axis
   let yAxis = chart.yAxes.push(
     am5xy.ValueAxis.new(root, {
       renderer: am5xy.AxisRendererY.new(root, {}),
     }),
   )
 
-  // Create X-Axis
   let xAxis = chart.xAxes.push(
     am5xy.CategoryAxis.new(root, {
       renderer: am5xy.AxisRendererX.new(root, {}),
@@ -53,7 +51,6 @@ onMounted(() => {
   )
   xAxis.data.setAll(data.value)
 
-  // Create series
   let series = chart.series.push(
     am5xy.ColumnSeries.new(root, {
       name: name.value,
@@ -65,11 +62,9 @@ onMounted(() => {
   )
   series.data.setAll(data.value)
 
-  // Add legend
   let legend = chart.children.push(am5.Legend.new(root, {}))
   legend.data.setAll(chart.series.values)
 
-  // Add cursor
   chart.set('cursor', am5xy.XYCursor.new(root, {}))
 
   return () => root.dispose()
