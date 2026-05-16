@@ -40,12 +40,16 @@ import {
   NumberEditorModule,
   ValueCacheModule,
   ClientSideRowModelModule,
+  type CellEditRequestEvent,
+  type GridReadyEvent,
+  type GridApi,
 } from 'ag-grid-community'
 import PieChart from '@/components/charts/PieChart.vue'
 import DeleteRecordDialog from '@/features/table/DeleteRecordDialog.vue'
 import USER_FIELDS from '@/entities/user'
 import gridOptions from '@/features/table/config'
 import { useConsumersStore } from '@/stores/consumers'
+import type { Consumer, UuidString } from '@/types/consumer'
 
 ModuleRegistry.registerModules([
   ColumnHoverModule,
@@ -83,16 +87,16 @@ const pinnedBottomRowData = computed(() => {
   ]
 })
 
-const gridApi = shallowRef(null)
+const gridApi = shallowRef<GridApi<Consumer> | null>(null)
 
-const onGridReady = (params) => {
+const onGridReady = (params: GridReadyEvent<Consumer>) => {
   gridApi.value = params.api
 }
 
-function onCellEditRequest(event) {
-  const path = event.colDef.field
+function onCellEditRequest(event: CellEditRequestEvent<Consumer>) {
+  const path = event.colDef.field as keyof Consumer
 
-  consumersStore.updateConsumer({
+  consumersStore.updateConsumerInfo({
     id: event.data.id,
     data: {
       [path]: event.newValue,
@@ -100,15 +104,17 @@ function onCellEditRequest(event) {
   })
 }
 
-const deleteRowInfo = ref({
+const deleteRowInfo = ref<{ show: boolean; id: UuidString | null }>({
   show: false,
   id: null,
 })
 
 function agreeDeleting() {
-  consumersStore.deleteConsumer({
-    id: deleteRowInfo.value.id,
-  })
+  if (deleteRowInfo.value.id) {
+    consumersStore.deleteConsumer({
+      id: deleteRowInfo.value.id,
+    })
+  }
 
   closeDialog()
 }
