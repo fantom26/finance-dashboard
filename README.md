@@ -13,7 +13,7 @@ Finance and operations dashboards usually need two things at once: a data-heavy 
 - **Data table (ag-grid)**: sorting, filtering, pagination, pinned totals row, editable numeric cells, row delete action with confirmation.
 - **Charts (amCharts 5)**: pie, map, bar/column, and donut views driven from store data.
 - **Routing (Vue Router)**: table route, charts gallery, not-found route.
-- **API layer (axios)**: load, patch, and delete customers against `json-server` and [`db.json`](db.json).
+- **API layer (axios)**: load, patch, and delete customers against `json-server` and `[db.json](db.json)`.
 - **Utilities**: currency/date formatters; phone masking with Maska.
 - **State (Pinia)**: single `consumers` store with actions and derived getters for chart series.
 
@@ -36,7 +36,7 @@ yarn install
 cp .env.example .env
 ```
 
-[`src/api/consumers.ts`](src/api/consumers.ts) reads `import.meta.env.VITE_API_URL` as the axios base URL (see [`.env.example`](.env.example)).
+`[src/api/consumers.ts](src/api/consumers.ts)` reads `import.meta.env.VITE_API_URL` as the axios base URL (see `[.env.example](.env.example)`).
 
 ### Run
 
@@ -84,3 +84,4 @@ yarn format
 6. Accessibility pass: dialogs, focus, loading/error UX, chart alternatives.
 7. **Storybook** for shared components and critical UI states.
 8. **GitHub Actions**: lint, typecheck, test, build.
+
