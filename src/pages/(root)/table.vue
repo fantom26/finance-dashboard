@@ -8,7 +8,7 @@
         :rowData="rowData"
         :gridOptions="gridOptions"
         style="width: 100%; height: 100%; flex: 0 0 76%"
-        :pinnedBottomRowData="pinnedBottomRowData"
+        :pinnedBottomRowData="consumerTotal"
         @grid-ready="onGridReady"
         @cell-edit-request="onCellEditRequest"
       />
@@ -46,10 +46,10 @@ import {
 } from 'ag-grid-community'
 import PieChart from '@/components/charts/PieChart.vue'
 import DeleteRecordDialog from '@/features/table/DeleteRecordDialog.vue'
-import USER_FIELDS from '@/entities/user'
 import gridOptions from '@/features/table/config'
 import { useConsumersStore } from '@/stores/consumers'
 import type { Consumer, UuidString } from '@/types/consumer'
+import { useConsumerTotals } from '@/composables/useConsumerTotals'
 
 ModuleRegistry.registerModules([
   ColumnHoverModule,
@@ -67,25 +67,7 @@ ModuleRegistry.registerModules([
 
 const consumersStore = useConsumersStore()
 const rowData = computed(() => consumersStore.consumers)
-
-const pinnedBottomRowData = computed(() => {
-  const { totalTransactionAmount, totalAccountBalance } = rowData.value.reduce(
-    (totals, row) => {
-      totals.totalTransactionAmount += +row[USER_FIELDS.TRANSACTION_AMOUNT] || 0
-      totals.totalAccountBalance += +row[USER_FIELDS.ACCOUNT_BALANCE] || 0
-      return totals
-    },
-    { totalTransactionAmount: 0, totalAccountBalance: 0 },
-  )
-
-  return [
-    {
-      [USER_FIELDS.FULL_NAME]: 'Total',
-      [USER_FIELDS.TRANSACTION_AMOUNT]: totalTransactionAmount,
-      [USER_FIELDS.ACCOUNT_BALANCE]: totalAccountBalance,
-    },
-  ]
-})
+const consumerTotal = useConsumerTotals(rowData)
 
 const gridApi = shallowRef<GridApi<Consumer> | null>(null)
 
