@@ -4,8 +4,6 @@
 export type Iso8601UtcTimestampString =
   `${number}-${number}-${number}T${number}:${number}:${number}Z`
 
-export type UuidString = `${string}-${string}-${string}-${string}-${string}`
-
 export type Gender =
   | 'Agender'
   | 'Bigender'
@@ -348,7 +346,7 @@ export const COUNTRY_CODES = [
 export type CountryCode = (typeof COUNTRY_CODES)[number]
 
 export interface Consumer {
-  id: UuidString
+  id: UUID
   full_name: string
   date_of_birth: string
   gender: Gender
@@ -359,13 +357,13 @@ export interface Consumer {
   city: string
   country: string
   employment_status: EmploymentStatus
-  account_id: UuidString
+  account_id: UUID
   account_type: AccountType
   account_balance: number
   currency: Currency
   account_open_date: string
   account_status: AccountStatus
-  transaction_id: UuidString
+  transaction_id: UUID
   transaction_date: Iso8601UtcTimestampString
   transaction_type: TransactionType
   transaction_amount: number

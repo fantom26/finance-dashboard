@@ -1,9 +1,8 @@
-import type { UuidString } from '@/types/consumer'
 import { ref, type InjectionKey, type Ref, provide } from 'vue'
 
 type DeleteRowInfo = {
   show: boolean
-  id: UuidString | null
+  id: UUID | null
 }
 
 export const DeleteRowInfoKey = Symbol() as InjectionKey<Ref<DeleteRowInfo>>
@@ -11,7 +10,7 @@ export const DeleteRowInfoKey = Symbol() as InjectionKey<Ref<DeleteRowInfo>>
 export const useDeleteTableRow = ({
   deleteRow,
 }: {
-  deleteRow: (payload: { id: UuidString }) => Promise<void>
+  deleteRow: (payload: { id: UUID }) => Promise<void>
 }) => {
   const deleteRowInfo = ref<DeleteRowInfo>({
     show: false,
